@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">专题:四维DP | —幻想郷に、遊ぶがいい—</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  <!--gittak-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "i-cookie'sblog";
+  mashiro_option.author_name = "blog";
+  mashiro_option.site_url = "https://i-cookie.github.io";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/4.jpg,https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/22.jpg,https://r.photo.store.qq.com/psb?/V14cBDik23h2lM/fkjvyk19nmVuAqFiGsTTf58Xe5w2tysVEDEYaCfiBx8!/r/dEkBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2wRV.DVaNqAzpap1pW56tmH*RkrFX4sN2ClDXWPHvtc!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/TKTmELZ0ZpbjsN20cQoyD0CJ.gM9YzTWr09AxYPumtY!/r/dDYBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/rgUiPqQGKQZl0zikL4gLnyfzmjgRWLHdyr2Fk8OzZv4!/r/dFQBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/5HRW2gzNEcYeLc.qj9PS7Gxug*jsRfDMwlV4GWazGBI!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/H*WCmf2jcEsNTy2FJiO5XQuZFkKQhsORG.5D9lLKJ5Q!/r/dMMAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/CxhcuMVp3a.VtSnr3qjeA9vaC.Tcgeu2gxHzsMhkXDw!/r/dE0BAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/QNjT83V1DkDSIwQPpgsRy*5dUQ.mvpX2TtiaO4bN2A8!/r/dAUBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/aYbgr1nve.t4HaYF36jBOOz*Lf2rI3M2ELhIdR6wzKk!/r/dL4AAAAAAAAA".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE0000}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE0000}::-webkit-scrollbar-thumb{background:#FE0000}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE0000}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE0000}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <style type="text/css">
+    @import url("/code.css");
+  </style>
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed;bottom:65px;left:31px;">
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> background <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+      <ul class="menu-list"> <li id="white-bg"> 
+          <i class="fa fa-television" aria-hidden="true">
+          </i>
+          </li> 
+          <li id="sakura-bg"> 
+              <i class="iconfont icon-sakura">
+              </i>
+          </li>
+          <li id="gribs-bg">
+              <i class="fa fa-slack" aria-hidden="true">
+              </i>
+          </li>
+          <li id="KAdots-bg">
+              <i class="iconfont icon-dots">
+              </i>
+          </li>
+          <li id="totem-bg">
+              <i class="fa fa-optin-monster" aria-hidden="true">
+              </i>
+          </li>
+          <li id="pixiv-bg">
+              <i class="iconfont icon-pixiv">
+              </i>
+          </li>
+          <li id="bing-bg">
+            <i class="fa fa-picture-o" aria-hidden="true">
+            </i>
+          </li>
+          <li id="dark-bg">
+              <i class="fa fa-moon-o" aria-hidden="true">
+              </i>
+          </li>
+      </ul>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> font <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="font-family-controls row-container">
+    <button type="button" class="control-btn-serif " data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+    <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> script <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+  <ul class="menu-list">
+    <li id="empty-effect">
+      <i class="fa fa-ban">
+      </i>
+    </li>
+    <li id="sakura-rain-effect">
+      <i class="iconfont icon-sakura">
+      </i>
+    </li>
+    <li id="snowy-effect">
+      <i class="fa fa-snowflake-o">
+      </i>
+    </li>
+    <li id="lines-effect">
+      <i class="fa fa-chevron-left">
+      </i>
+    </li>
+    <li id="colorful-belts-effect">
+      <i class="fa fa-map"></i>
+      </i>
+    </li>
+    <li id="words-rain-effect">
+      <i class="fa fa-font"></i>
+    </li>
+    <li id="point-rain-effect">
+      <i class="iconfont icon-dots"></i>
+    </li>
+    <li id="rain-drop-effect">
+      <i class="fa fa-tint"></i>
+    </li>
+  </ul>
+  </div>
+  <canvas id="night-mode-cover">
+  </canvas>
+</div> 
+  <div class="changeSkin-gear no-select" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; visibility: visible; bottom: 0px;"> 
+    <div class="keys" id="setbtn"> 
+      <button id="open-skinMenu">
+          <style>
+          button#open-skinMenu{
+              transition: all 0.2s linear 0s;
+              outline:none;
+              position:fixed;
+              bottom:13px;
+              left:15px;
+              font-size:16px;
+              background-color: rgba(255,255,255,.95);
+              border-radius: 20px;
+              box-shadow: 0 3px 8px 0 rgba(0,0,0,0.1), 0 3px 8px 0 rgba(0,0,0,0.1);
+          }
+          button#open-skinMenu:hover{
+              transition: all 0.2s linear 0s;
+              background-color: red;
+              color: rgba(255,255,255);
+          }
+          </style>
+          <i class="iconfont icon-gear inline-block rotating">
+        </i> 
+          SCHEME TOOL | 主题工具 
+      </button>
+    </div> 
+  </div>
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://i-cookie.github.io">
+          <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>——Gensokyo</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/i-cookie" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="luogu">
+                    <img src="https://cdn.jsdelivr.net/gh/ctz45562/cdn@1.4.1/social/luogu.jpg">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div> 
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">i-cookie&#39;s</span>
+            <span class="shironeko">blog</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/经验总结/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          经验总结
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/课堂笔记/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          课堂笔记
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/问题回顾/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          问题回顾
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随笔/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          随笔
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友链
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Ck*F3rcKQLKLUuAfA4nfDT07Nl3C4xyxRUBzUM5uRrA!/r/dAYBAAAAAAAA);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Ck*F3rcKQLKLUuAfA4nfDT07Nl3C4xyxRUBzUM5uRrA!/r/dAYBAAAAAAAA">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      专题:四维DP</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+          </a>
+        </span>
+        <span>
+          <a href="">i-cookie</a>
+        </span>
+        <span class="bull">
+          <i class="fa fa-calendar" aria-hidden="true"></i></span>
+        2019-8-11<span class="bull">
+          <i class="fa fa-eye" aria-hidden="true"></i></span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+      
+        
+          <div class="tags">
+            <style scoped>
+              a{color: #fff;}
+            </style>
+            &nbsp<i class="fa fa-tag" aria-hidden="true"></i>&nbsp
+            <a href="/tags/动态规划/">动态规划</a>
+          </div>
+      
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <!--<div class="toc"></div>-->
+        <!--<div class="toc-entry-content">套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<h1 id="蒟蒻在DP之路上求索着"><a href="#蒟蒻在DP之路上求索着" class="headerlink" title="蒟蒻在DP之路上求索着"></a>蒟蒻在DP之路上求索着</h1></blockquote>
+<h2 id="T1-P1004-方格取数"><a href="#T1-P1004-方格取数" class="headerlink" title="T1 P1004 方格取数"></a>T1 <a href="https://www.luogu.org/problem/P1004" target="_blank" rel="noopener">P1004 方格取数</a></h2><p><strong>题目描述</strong></p>
+<p>设有$N\times N$的方格图$(N≤9)$，我们将其中的某些方格中填入正整数，而其他的方格中则放入数字0。如下图所示（见样例）:</p>
+<p>A</p>
+<p>0  0  0  0  0  0  0  0</p>
+<p>0  0 13  0  0  6  0  0</p>
+<p>0  0  0  0  7  0  0  0</p>
+<p>0  0  0 14  0  0  0  0</p>
+<p>0 21  0  0  0  4  0  0</p>
+<p>0  0 15  0  0  0  0  0</p>
+<p>0 14  0  0  0  0  0  0</p>
+<p>0  0  0  0  0  0  0  0<br>B</p>
+<p>某人从图的左上角的A点出发，可以向下行走，也可以向右走，直到到达右下角的B点。在走过的路上，他可以取走方格中的数（取走后的方格中将变为数字0）。<br>此人从A点到B点共走两次，试找出2条这样的路径，使得取得的数之和为最大。</p>
+<p><strong>输入格式</strong></p>
+<p>输入的第一行为一个整数N（表示$N \times N$的方格图），接下来的每行有三个整数，前两个表示位置，第三个数为该位置上所放的数。一行单独的0表示输入结束。</p>
+<p><strong>输出格式</strong></p>
+<p>只需输出一个整数，表示2条路径上取得的最大的和。</p>
+<h3 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h3><p>其实如果只走一条路径完全可以直接二维DP出来。但是这题有一个特殊的地方， 那就是取走的地方会变为0.这就不允许我们分别DP。在这种情况下，我们要参考数据范围，然后发现，可以设$f[i][j][p][q]$表示第一条路走到了$(i,j)$,第二条路走到了$(p,q)$,的最大值。因为第二条路和第一条路的两个端点是一样的，所以可以当成从同一起点出发的两条路了。然后转移时就枚举两条路分别是从上面还是左面转移来的即可。</p>
+<p>代码：</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+using namespace std;
+
+int s[10][10], n, f[10][10][10][10];
+
+inline int max(int x, int y) {
+    return x &gt; y ? x : y;
+}
+
+int main()
+{
+    cin &gt;&gt; n;
+    do {
+        int y, x, c;
+        cin&gt;&gt;y&gt;&gt;x&gt;&gt;c;
+        if(y == 0 &amp;&amp; x == 0 &amp;&amp; c == 0) break;
+        s[y][x] = c;
+    }while (1);
+    for (int i = 1; i &lt;= n; i++)
+        for (int j = 1; j &lt;= n; j++)
+            for (int p = 1; p &lt;= n; p++)
+                for (int q = 1; q &lt;= n; q++) {
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i - 1][j][p - 1][q] + s[p][q]);
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i - 1][j][p][q - 1] + s[p][q]);
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i][j - 1][p - 1][q] + s[p][q])；
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i][j - 1][p][q - 1] + s[p][q]);
+                    if (i != p || j != q) f[i][j][p][q] += s[i][j];
+                }
+    cout &lt;&lt; f[n][n][n][n] &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h2 id="T2-P1541-乌龟棋"><a href="#T2-P1541-乌龟棋" class="headerlink" title="T2 P1541 乌龟棋"></a>T2 <a href="https://www.luogu.org/problem/P1541" target="_blank" rel="noopener">P1541 乌龟棋</a></h2><p>题目背景<br>小明过生日的时候，爸爸送给他一副乌龟棋当作礼物。</p>
+<p><strong>题目描述</strong></p>
+<p>乌龟棋的棋盘是一行N个格子，每个格子上一个分数（非负整数）。棋盘第1格是唯一的起点，第N格是终点，游戏要求玩家控制一个乌龟棋子从起点出发走到终点。</p>
+<p>乌龟棋中M张爬行卡片，分成4种不同的类型（M张卡片中不一定包含所有4种类型的卡片，见样例），每种类型的卡片上分别标有$1,2,3,4$四个数字之一，表示使用这种卡片后，乌龟棋子将向前爬行相应的格子数。游戏中，玩家每次需要从所有的爬行卡片中选择一张之前没有使用过的爬行卡片，控制乌龟棋子前进相应的格子数，每张卡片只能使用一次。</p>
+<p>游戏中，乌龟棋子自动获得起点格子的分数，并且在后续的爬行中每到达一个格子，就得到该格子相应的分数。玩家最终游戏得分就是乌龟棋子从起点到终点过程中到过的所有格子的分数总和。</p>
+<p>很明显，用不同的爬行卡片使用顺序会使得最终游戏的得分不同，小明想要找到一种卡片使用顺序使得最终游戏得分最多。</p>
+<p>现在，告诉你棋盘上每个格子的分数和所有的爬行卡片，你能告诉小明，他最多能得到多少分吗？</p>
+<p><strong>输入格式</strong></p>
+<p>每行中两个数之间用一个空格隔开。</p>
+<p>第1行2个正整数N,M，分别表示棋盘格子数和爬行卡片数。</p>
+<p>第2行N个非负整数，a_1,a_2,…,a_N。其中a_i表示棋盘第i个格子上的分数。</p>
+<p>第3行M个整数，b_1,b_2,…,b_M，表示M张爬行卡片上的数字。</p>
+<p>输入数据保证到达终点时刚好用光M张爬行卡片。</p>
+<p><strong>输出格式</strong></p>
+<p>1个整数，表示小明最多能得到的分数。</p>
+<h3 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h3><p>至此我们已经基本上看出来了四维DP的使用前提：</p>
+<ol>
+<li>二维通常不符合题意</li>
+<li>数据范围能承受的住</li>
+<li>题目中的关键信息往往可以关联到四个种类的信息。</li>
+</ol>
+<p>在这道题中，卡片的数目已经限定有且只有4种了，且每种卡片的使用互相独立，而且数据范并不大，因此我们考虑设$f[i][j][p][q]$表示第一种卡片用了i张，第二种卡片用了j张，第三种卡片用了p张，第四种卡片用了q张，所能得到的最大分数。因为题目保证所有卡片都用完，所以目标是$f[c1][c2][c3][c4]$.转移的时候直接根据用的张数就可以直接算出现在在哪一个点。</p>
+<p>代码：</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+int n, c, c1, c2, c3, c4, f[45][45][45][45], s[355];
+
+inline int max(int x, int y) {
+    return x &gt; y ? x : y;
+} 
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; c;
+    for (int i = 1; i &lt;= n; i++)
+        cin &gt;&gt; s[i];
+    for (int i = 1; i &lt;= c; i++) {
+    int x;
+    cin &gt;&gt; x;
+    if (x == 1) c1++;
+    if (x == 2) c2++;
+    if (x == 3) c3++;
+    if (x == 4) c4++;
+    }
+    f[0][0][0][0] = s[1];
+    if (c4 &gt; 0) f[1][0][0][0] = s[5];
+    if (c3 &gt; 0) f[0][1][0][0] = s[4];
+    if (c2 &gt; 0) f[0][0][1][0] = s[3];
+    if (c1 &gt; 0) f[0][0][0][1] = s[2];
+    for (int i = 0; i &lt;= c4; i++)
+        for (int j = 0; j &lt;= c3; j++)
+            for (int p = 0; p &lt;= c2; p++)
+                for (int q = 0; q &lt;= c1; q++) {
+                    if (i == 0 &amp;&amp; j == 0 &amp;&amp; p == 0 &amp;&amp; q == 0) continue;
+                    if (i &gt; 0) f[i][j][p][q] = max(f[i][j][p][q], f[i - 1][j][p][q] + s[i * 4 + j * 3 + p * 2 + q * 1 + 1]);
+                    if (j &gt; 0) f[i][j][p][q] = max(f[i][j][p][q], f[i][j - 1][p][q] + s[i * 4 + j * 3 + p * 2 + q * 1 + 1]);
+                    if (p &gt; 0) f[i][j][p][q] = max(f[i][j][p][q], f[i][j][p - 1][q] + s[i * 4 + j * 3 + p * 2 + q * 1 + 1]);
+                    if (q &gt; 0) f[i][j][p][q] = max(f[i][j][p][q], f[i][j][p][q - 1] + s[i * 4 + j * 3 + p * 2 + q * 1 + 1]);
+        }
+    cout &lt;&lt; f[c4][c3][c2][c1] &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h2 id="T3-P1006-传纸条"><a href="#T3-P1006-传纸条" class="headerlink" title="T3 P1006 传纸条"></a>T3 <a href="https://www.luogu.org/problem/P1006" target="_blank" rel="noopener">P1006 传纸条</a></h2><p><strong>题目描述</strong><br>小渊和小轩是好朋友也是同班同学，他们在一起总有谈不完的话题。一次素质拓展活动中，班上同学安排做成一个m行n列的矩阵，而小渊和小轩被安排在矩阵对角线的两端，因此，他们就无法直接交谈了。幸运的是，他们可以通过传纸条来进行交流。纸条要经由许多同学传到对方手里，小渊坐在矩阵的左上角，坐标$(1,1)$，小轩坐在矩阵的右下角，坐标$(m,n)$。从小渊传到小轩的纸条只可以向下或者向右传递，从小轩传给小渊的纸条只可以向上或者向左传递。</p>
+<p>在活动进行中，小渊希望给小轩传递一张纸条，同时希望小轩给他回复。班里每个同学都可以帮他们传递，但只会帮他们一次，也就是说如果此人在小渊递给小轩纸条的时候帮忙，那么在小轩递给小渊的时候就不会再帮忙。反之亦然。</p>
+<p>还有一件事情需要注意，全班每个同学愿意帮忙的好感度有高有低（注意：小渊和小轩的好心程度没有定义，输入时用0表示），可以用一个0-100的自然数来表示，数越大表示越好心。小渊和小轩希望尽可能找好心程度高的同学来帮忙传纸条，即找到来回两条传递路径，使得这2条路径上同学的好心程度之和最大。现在，请你帮助小渊和小轩找到这样的2条路径。</p>
+<p><strong>输入格式</strong><br>输入文件，第一行有2个用空格隔开的整数m和n，表示班里有m行n列。</p>
+<p>接下来的m行是一个$m\times n$的矩阵，矩阵中第i行j列的整数表示坐在第i行j列的学生的好心程度。每行的n个整数之间用空格隔开。</p>
+<p><strong>输出格式</strong><br>输出文件共一行，包含一个整数，表示来回2条路上参与传递纸条的学生的好心程度之和的最大值。</p>
+<h3 id="解法-2"><a href="#解法-2" class="headerlink" title="解法"></a>解法</h3><p>其实这道题因为放在了这个专题里而变得很简单。如果平时看到这道题，我们很可能会首先考虑二维DP，即先找出最大的一条路，再找另一条最大的路。但是这是错误的。因为题目要求两条路没有公共点，也就是说直接找到最大的一条路有可能会使得其他答案被阻断从而出现了第一条路优但是全局不优的结果。因此我们只能考虑四维DP。设$f[i][j][p][q]$表示第一条路到了$(i,j)$，第二条路到了$(p,q)$的最大值，然后我们用类似第一题的做法来解决这个题就可以了。</p>
+<p>代码：</p>
+<pre><code class="cpp">#include&lt;iostream&gt;
+#include&lt;cstdio&gt;
+#include&lt;cstring&gt;
+using namespace std;
+
+int n, m, f[52][52][52][52], c[50][50];
+
+inline int max(int x, int y) {
+    return x &gt; y ? x : y;
+}
+
+int main() {
+    cin &gt;&gt; n &gt;&gt; m;
+    for (int i = 1; i &lt;= n; i++)
+        for (int j = 1; j &lt;= m; j++)
+            cin &gt;&gt; c[i][j];
+    for (int i = 1; i &lt;= n; i++)
+        for (int j = 1; j &lt;= m; j++)
+            for (int p = 1; p &lt;= n; p++)
+                for (int q = j + 1; q &lt;= m; q++) {
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i - 1][j][p - 1][q] + c[p][q] + c[i][j]);
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i][j - 1][p][q - 1] + c[p][q] + c[i][j]);
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i - 1][j][p][q - 1] + c[p][q] + c[i][j]);
+                    f[i][j][p][q] = max(f[i][j][p][q], f[i][j - 1][p - 1][q] + c[p][q] + c[i][j]);
+                }
+    cout &lt;&lt; f[n][m - 1][n - 1][m] &lt;&lt; endl;
+    return 0;
+}
+</code></pre>
+<h2 id="T4-JSOI2008-Blue-Mary的职员分配"><a href="#T4-JSOI2008-Blue-Mary的职员分配" class="headerlink" title="T4 [JSOI2008]Blue Mary的职员分配"></a>T4 <a href="https://www.luogu.org/problem/P4399" target="_blank" rel="noopener">[JSOI2008]Blue Mary的职员分配</a></h2><p><strong>题目描述</strong></p>
+<p>​        由于Blue Mary呕心沥血的管理，Blue Mary的网络公司蒸蒸日上。现在一共拥有了n名职员，可惜没有任何的金钱和声誉。平均每名每天职员都可以给公司带来x单位金钱或者y单位声誉（名利不能双全）。并且可以花费z单位的金钱在人才交易市场发布广告招聘职员，每次发布广告三天以后就会招聘到一名职员，并且必须在发布广告并且招聘到职员的那一天才能发布下一次广告。</p>
+<p>​        Blue Mary计划以最快的时间获得至少A单位金钱和至少B单位声誉，请你计算一下他至少需要多少时间才能达到他的目标。</p>
+<p><strong>数据范围与约定</strong></p>
+<p>对于所有的数据, $1\le n,x,y,z,A,B\le 20$.</p>
+<h3 id="解法-3"><a href="#解法-3" class="headerlink" title="解法"></a>解法</h3><p>​        这可能是我目前遇到最强的DP题了吧.</p>
+<p>​        题目中给了大量的信息,我们发现数据范围异常的小,因此我们最多可以把状态加到4维.接下来的转移让我怀疑人生.</p>
+<p>​        考虑到在现有的人中,可以有不同的人挣钱,其他人挣声誉,所以一个状态可以导致多个状态,同样的,一个状态也可以由多个状态转移过来.因此为了方便思考,<strong>选择刷表法而不是填表法</strong>.期初我试图使用三维或者二维DP,但是发现转移可能会变得非常变态,所以只能考虑四维(估计数据范围也是照着四维给的).但是这四维设什么呢?来看看题目中的信息:我们要求的是达到一定金钱和声誉的时间,所以相关的肯定要记录现在已有的金钱和声誉.而只记录这两个显然会使得状态无从转移,所以我们再加上与现在的人数有关的一维.而人数可以通过打广告来增加,所以我们需要再加一个打广告的维.</p>
+<p>​        看看我们得到了什么.设$f[i][a][b][j]$表示现在我们有i个人,手中有a的金钱和b的声誉,距离上一次发出广告已经过去了j天(个人怀疑这一维是怎么用人脑想出来的).然后就是转移了.显然,人数会直接影响a,b.而j的不同会直接导致i的不同.我们应该按照j来分类讨论.</p>
+<pre><code class="伪代码">if j == 0,即打广告的时刻
+    f[i][a][b][0] -&gt; f[i][下个状态的钱][下个状态的声誉][0];//相当于推迟打广告,这个时刻不打广告
+    if 下个状态的金钱 &gt;= z
+        f[i][a][b][0] -&gt; f[i][下一状态的钱-z][下个状态的声誉][1];//相当于这一时刻打了广告,前提是钱够
+if j == 3,即招到人的时刻
+    f[i][a][b][3] -&gt; f[i+1][下个状态的钱][下个状态的声誉][0];//不继续打广告
+    if 下个状态的金钱 &gt;= z
+        f[i][a][b][3] -&gt; f[i+1][下个状态的钱-z][下个状态的声誉][1];//刚招到人又打了广告
+else f[i][a][b][j] -&gt; f[i][a][b][j+1];//已经打了广告,除了等到人来别无选择</code></pre>
+<p>这就是大致的思路.接下来可以用上面的伪代码大致对照一下实际代码来加深理解</p>
+<pre><code class="cpp">int main() {
+    read(n), read(x), read(y), read(z), read(A), read(B);
+    ans = inf;
+    memset(f, 0x3f, sizeof(f));
+    f[n][0][0][0] = 0;
+    for (int i = n; i &lt;= 40; ++i)//四重循环
+    for (int j = 0; j &lt;= 3; ++j)//这个要放在外层,不然会WA
+    for (int a = 0; a &lt;= max(A, z); ++a)
+    for (int b = 0; b &lt;= B; ++b) {
+        if (f[i][a][b][j] &gt;= ans) continue;//劣解没必要讨论
+        int nowans = f[i][a][b][j];//缩短代码长度
+        if (a &gt;= A &amp;&amp; b &gt;= B) {
+            ans = min(ans, nowans);
+            continue;
+        }
+        for (int k = 0; k &lt;= i; ++k) {
+            int nowa = min(a+k*x, max(A, z)), nowb = min(B, b+y*(i-k));//再次缩短代码长度
+            if (j == 0) {//讨论这个状态打还是不打
+                f[i][nowa][nowb][0] = min(f[i][nowa][nowb][0], nowans + 1);
+                if (nowa &gt;= z)
+                    f[i][nowa-z][nowb][1] = min(f[i][nowa-z][nowb][1], nowans+1);
+            }
+            else if (j == 3) {//讨论这个状态打还是不打
+                f[i+1][nowa][nowb][0] = min(f[i+1][nowa][nowb][0], nowans+1);
+                if (nowa &gt;= z)
+                    f[i+1][nowa-z][nowb][1] = min(f[i+1][nowa-z][nowb][1], nowans + 1);
+            }
+            else f[i][nowa][nowb][j+1] = min(f[i][nowa][nowb][j+1], nowans + 1);
+            //只能等着
+        }
+    }
+    cout &lt;&lt; ans &lt;&lt; endl;
+    return 0;
+}</code></pre>
+
+        </div>
+        <!-- .entry-content -->
+        <!--
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer>--><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/08/12/加分二叉树/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/symxeWP3b1bV9fuCSGXGBlDIyVxMb0.9NQthnikia1Y!/r/dFQBAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/symxeWP3b1bV9fuCSGXGBlDIyVxMb0.9NQthnikia1Y!/r/dFQBAAAAAAAA">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                基础树形DP:P1040加分二叉树</h3>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/08/08/8.8贪心/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/pKLjB7IJgeriMxWbE.NoPcnUclrYHDp8rE5akzYXqx4!/r/dLYAAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/pKLjB7IJgeriMxWbE.NoPcnUclrYHDp8rE5akzYXqx4!/r/dLYAAAAAAAAA">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                8.08 贪心</h3>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+  <script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+          clientID: 'efa7ce8da306448c7f8b',
+          clientSecret: '7a9bc1e56f60b7cc3fac24c448dd358aaa393aa7',
+          id: window.location.pathname,
+          repo: 'i-cookie.github.io',
+          owner: 'i-cookie',
+          admin: 'i-cookie'
+      })
+      gitalk.render('gitalk-container')
+    </script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="/about/" class="profile gravatar"><img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA" itemprop="image" alt="blog" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://i-cookie.github.io" itemprop="url" rel="author">i-cookie's blog</a>
+            </h3>
+          </div>
+        </div>
+        <p><i class="iconfont icon-write"></i>——Gensokyo</p>
+      </section>
+      </div><!-- #primary -->
+      </div>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+
+
+
+
+    </div>    
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+  <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 i-cookie<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<div id="gitalk-container"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+  
+  
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">i-cookie'sblog</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/i-cookie" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/经验总结/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  经验总结
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/课堂笔记/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  课堂笔记
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/问题回顾/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  问题回顾
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随笔/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  随笔
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友链
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="598512469"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

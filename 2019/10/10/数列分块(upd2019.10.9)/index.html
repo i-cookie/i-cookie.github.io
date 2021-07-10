@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">数列分块(完结于2019.10.10) | —幻想郷に、遊ぶがいい—</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  <!--gittak-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "i-cookie'sblog";
+  mashiro_option.author_name = "blog";
+  mashiro_option.site_url = "https://i-cookie.github.io";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/4.jpg,https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/22.jpg,https://r.photo.store.qq.com/psb?/V14cBDik23h2lM/fkjvyk19nmVuAqFiGsTTf58Xe5w2tysVEDEYaCfiBx8!/r/dEkBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2wRV.DVaNqAzpap1pW56tmH*RkrFX4sN2ClDXWPHvtc!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/TKTmELZ0ZpbjsN20cQoyD0CJ.gM9YzTWr09AxYPumtY!/r/dDYBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/rgUiPqQGKQZl0zikL4gLnyfzmjgRWLHdyr2Fk8OzZv4!/r/dFQBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/5HRW2gzNEcYeLc.qj9PS7Gxug*jsRfDMwlV4GWazGBI!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/H*WCmf2jcEsNTy2FJiO5XQuZFkKQhsORG.5D9lLKJ5Q!/r/dMMAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/CxhcuMVp3a.VtSnr3qjeA9vaC.Tcgeu2gxHzsMhkXDw!/r/dE0BAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/QNjT83V1DkDSIwQPpgsRy*5dUQ.mvpX2TtiaO4bN2A8!/r/dAUBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/aYbgr1nve.t4HaYF36jBOOz*Lf2rI3M2ELhIdR6wzKk!/r/dL4AAAAAAAAA".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE0000}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE0000}::-webkit-scrollbar-thumb{background:#FE0000}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE0000}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE0000}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <style type="text/css">
+    @import url("/code.css");
+  </style>
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed;bottom:65px;left:31px;">
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> background <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+      <ul class="menu-list"> <li id="white-bg"> 
+          <i class="fa fa-television" aria-hidden="true">
+          </i>
+          </li> 
+          <li id="sakura-bg"> 
+              <i class="iconfont icon-sakura">
+              </i>
+          </li>
+          <li id="gribs-bg">
+              <i class="fa fa-slack" aria-hidden="true">
+              </i>
+          </li>
+          <li id="KAdots-bg">
+              <i class="iconfont icon-dots">
+              </i>
+          </li>
+          <li id="totem-bg">
+              <i class="fa fa-optin-monster" aria-hidden="true">
+              </i>
+          </li>
+          <li id="pixiv-bg">
+              <i class="iconfont icon-pixiv">
+              </i>
+          </li>
+          <li id="bing-bg">
+            <i class="fa fa-picture-o" aria-hidden="true">
+            </i>
+          </li>
+          <li id="dark-bg">
+              <i class="fa fa-moon-o" aria-hidden="true">
+              </i>
+          </li>
+      </ul>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> font <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="font-family-controls row-container">
+    <button type="button" class="control-btn-serif " data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+    <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> script <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+  <ul class="menu-list">
+    <li id="empty-effect">
+      <i class="fa fa-ban">
+      </i>
+    </li>
+    <li id="sakura-rain-effect">
+      <i class="iconfont icon-sakura">
+      </i>
+    </li>
+    <li id="snowy-effect">
+      <i class="fa fa-snowflake-o">
+      </i>
+    </li>
+    <li id="lines-effect">
+      <i class="fa fa-chevron-left">
+      </i>
+    </li>
+    <li id="colorful-belts-effect">
+      <i class="fa fa-map"></i>
+      </i>
+    </li>
+    <li id="words-rain-effect">
+      <i class="fa fa-font"></i>
+    </li>
+    <li id="point-rain-effect">
+      <i class="iconfont icon-dots"></i>
+    </li>
+    <li id="rain-drop-effect">
+      <i class="fa fa-tint"></i>
+    </li>
+  </ul>
+  </div>
+  <canvas id="night-mode-cover">
+  </canvas>
+</div> 
+  <div class="changeSkin-gear no-select" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; visibility: visible; bottom: 0px;"> 
+    <div class="keys" id="setbtn"> 
+      <button id="open-skinMenu">
+          <style>
+          button#open-skinMenu{
+              transition: all 0.2s linear 0s;
+              outline:none;
+              position:fixed;
+              bottom:13px;
+              left:15px;
+              font-size:16px;
+              background-color: rgba(255,255,255,.95);
+              border-radius: 20px;
+              box-shadow: 0 3px 8px 0 rgba(0,0,0,0.1), 0 3px 8px 0 rgba(0,0,0,0.1);
+          }
+          button#open-skinMenu:hover{
+              transition: all 0.2s linear 0s;
+              background-color: red;
+              color: rgba(255,255,255);
+          }
+          </style>
+          <i class="iconfont icon-gear inline-block rotating">
+        </i> 
+          SCHEME TOOL | 主题工具 
+      </button>
+    </div> 
+  </div>
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://i-cookie.github.io">
+          <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>——Gensokyo</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/i-cookie" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="luogu">
+                    <img src="https://cdn.jsdelivr.net/gh/ctz45562/cdn@1.4.1/social/luogu.jpg">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div> 
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">i-cookie&#39;s</span>
+            <span class="shironeko">blog</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/经验总结/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          经验总结
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/课堂笔记/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          课堂笔记
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/问题回顾/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          问题回顾
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随笔/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          随笔
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友链
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/0du4iWaEigTiYvWXP3d5e7WC1dzanHFGa1FxBJwdpQY!/r/dDUBAAAAAAAA);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/0du4iWaEigTiYvWXP3d5e7WC1dzanHFGa1FxBJwdpQY!/r/dDUBAAAAAAAA">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      数列分块(完结于2019.10.10)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+          </a>
+        </span>
+        <span>
+          <a href="">i-cookie</a>
+        </span>
+        <span class="bull">
+          <i class="fa fa-calendar" aria-hidden="true"></i></span>
+        2019-10-10<span class="bull">
+          <i class="fa fa-eye" aria-hidden="true"></i></span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+      
+        
+          <div class="tags">
+            <style scoped>
+              a{color: #fff;}
+            </style>
+            &nbsp<i class="fa fa-tag" aria-hidden="true"></i>&nbsp
+            <a href="/tags/数据结构/">数据结构</a>&nbsp &nbsp<a href="/tags/分块/">分块</a>
+          </div>
+      
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <!--<div class="toc"></div>-->
+        <!--<div class="toc-entry-content">套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<h1 id="分块是优雅的暴力——一位-dalao"><a href="#分块是优雅的暴力——一位-dalao" class="headerlink" title="分块是优雅的暴力——一位$dalao$"></a>分块是优雅的暴力——一位$dalao$</h1></blockquote>
+<h3 id="hzwer-dalao的blog"><a href="#hzwer-dalao的blog" class="headerlink" title="hzwer dalao的blog"></a><strong><a href="http://hzwer.com/8053.html" target="_blank" rel="noopener">hzwer dalao的blog</a></strong></h3><h2 id="Level-1"><a href="#Level-1" class="headerlink" title="$Level\ \ 1$"></a>$Level\ \ 1$</h2><h3 id="题面"><a href="#题面" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为$n$的数列，以及$n$个操作，操作涉及区间加法，单点查值。</p>
+<h3 id="数据范围与约定"><a href="#数据范围与约定" class="headerlink" title="数据范围与约定"></a>数据范围与约定</h3><p>对于$100$%的数据,$1\le n\le 50000,others/ans\in INT$</p>
+<h3 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h3><p>作为分块的第一题,它具有最小的难度和最强的代表性.题目要求区间修改单点查询,事实上通过树状数组也是可以完成的.那么接下来我们看看分块怎么做.</p>
+<p>分块就像字面意思,把数列分成若干块,使得信息的统计和修改更加容易不必精确到点,节省了时间.分块主要分两种情况讨论:</p>
+<ol>
+<li>不完整的块只需要靠暴力来扫即可.</li>
+<li>完整的块可以做整体操作来节省时间,这也是分块和暴力相比最优越的地方.</li>
+</ol>
+<p>分多少块呢?如果我们每块的大小是$size$,则处理每一整块需要$\Theta(1)$的复杂度,一共有$n/m$块,两边不完整的块最多有$2m$个元素,所以复杂度是$\Theta(n/m)+\Theta(m)$,根据均值不等式,我们可以得出当分$\sqrt{n}$块时复杂度是最小的.可以通过代码来感受一下分块过程:</p>
+<pre><code class="cpp">struct node {
+    int tag, l, r;
+}part[N];//块结构体
+...
+int size = sqrt(n)//每块的大小;
+part[1].l = 1;
+for (int i = 1; i &lt;= n; ++i) {
+    bel[i] = cnt;//序列中第i个位置属于第几块
+    if (i % size == 0) {//一整块
+        part[cnt].r = i;
+        part[++cnt].l = i + 1;//增加新的块
+    }
+}
+part[cnt].r = n;</code></pre>
+<p>接下来我们回到问题,来分析一下该怎么实现区间修改和单点查询.因为要按块来整体操作,所以我们对每一个块打一个$tag$,表示加法标记.当我们的区间修改覆盖整块的时候,我们直接令这一块的$tag$增加.如果不是一整块就暴力扫描.当我们要单点查询的时候,只需要让数列中的值加上它所属的块的加法标记即可.</p>
+<pre><code class="cpp">read(opt);
+if (opt) {
+    int x, y, z;
+    read(x), read(y), read(z);
+    printf(&quot;%lld\n&quot;, a[y] + part[bel[y]].tag);//输出只需要加上加法标记.
+}
+else {修改需要判定一些边界,如是不是完整块,左右端点是不是在同一块中.
+    int x, y, z;
+    read(x), read(y), read(z);
+    if (part[bel[x]].l == x &amp;&amp; part[bel[y]].r &lt;= y)
+        part[bel[x]].tag += z;//如果左端点恰好是一块的起点,区间覆盖一整块就直接加
+    else
+        for (int i = x; i &lt;= min(part[bel[x]].r, y); ++i)
+            a[i] += z;//x,y可能同块,所以要取min
+    if (bel[x] == bel[y])
+        continue;
+    if (part[bel[y]].r == y &amp;&amp; part[bel[y]].l &lt;= x)
+        part[bel[y]].tag += z;
+    else
+        for (int i = y; i &gt;= part[bel[y]].l; --i)
+            a[i] += z;
+    for (int i = bel[x] + 1; i &lt;= bel[y] - 1; ++i)
+        part[i].tag += z;//把剩下的块直接处理
+}</code></pre>
+<p>这样我们就完成了第一个分块题.</p>
+<h2 id="Level-2"><a href="#Level-2" class="headerlink" title="$Level\ \ 2$"></a>$Level\ \ 2$</h2><h3 id="题面-1"><a href="#题面-1" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间加法，询问区间内小于某个值x的元素个数。</p>
+<h3 id="数据规模与约定"><a href="#数据规模与约定" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 50000,others/ans\in INT$.</p>
+<h3 id="题解-1"><a href="#题解-1" class="headerlink" title="题解"></a>题解</h3><p>这道题就不是用各种数据结构都可以维护的了.我们考虑如何把数列分成一块一块的来分别处理.</p>
+<p>首先我们根据分块的原则,如果处理的区间没有覆盖一个完整的块,我们就用暴力来扫描,反正也花不了多少时间.如果覆盖一个完整的块,我们又该怎么处理呢?类似于求区间第k小的操作,我们是通过二分查找来看区间中有多少个数符合要求的.但是二分的前提是区间内的数是单调的.但是又不能直接给原序列排序,怎么办呢?我们可以保存一个原序列的副本,然后分完块后对每一块排序,这样如果不能覆盖完整块,就在原序列上暴力扫,如果覆盖了完整块,就在有序的副本上二分查找得出答案.</p>
+<p>询问部分的代码:</p>
+<pre><code class="cpp">if (op) {
+    int x, y, z;
+    read(x), read(y), read(z), z *= z;
+    if (bel[x] == bel[y]) {
+        int tot = 0;
+        for (int i = x; i &lt;= y; ++i)
+            tot += (a[i] + part[bel[x]].tag &lt; z);
+        printf(&quot;%d\n&quot;, tot);
+    }
+    else {
+        int tot = 0;
+        if (part[bel[x]].l == x)
+            tot += ef_find(part[bel[x]].l, part[bel[x]].r, z) - part[bel[x]].l;
+        else {
+            for (int i = x; i &lt;= part[bel[x]].r; ++i)
+                tot += (a[i] + part[bel[x]].tag &lt; z);
+        }
+        if (part[bel[y]].r == y)
+            tot += ef_find(part[bel[y]].l, part[bel[y]].r, z) - part[bel[y]].l;
+        else {
+            for (int i = y; i &gt;= part[bel[y]].l; --i)
+                tot += (a[i] + part[bel[y]].tag &lt; z);
+        }
+        for (int i = bel[x] + 1; i &lt;= bel[y] - 1; ++i)
+            tot += ef_find(part[i].l, part[i].r, z) - part[i].l;
+        printf(&quot;%d\n&quot;, tot);
+    }
+}</code></pre>
+<p>还有修改呢?参考上一题,我们发现可以维护一个加法标记.但是不完整的块加完之后不一定是递增的,因此要对这一块重新排序来获取单调性.在整个过程中要保持有序副本和原数列的高度同步,不然很容易错.</p>
+<p>修改部分的代码:</p>
+<pre><code class="cpp">else {
+    int x, y, z;
+    read(x), read(y), read(z);
+    if (part[bel[x]].l == x &amp;&amp; part[bel[x]].r &lt;= y)
+        part[bel[x]].tag += z;
+    else {
+        for (int i = x; i &lt;= min(part[bel[x]].r, y); ++i)
+            a[i] += z;
+        for (int i = part[bel[x]].l; i &lt;= part[bel[x]].r; ++i)
+            sed[i] = a[i];
+        sort(sed + part[bel[x]].l, sed + part[bel[x]].r + 1);
+    }
+    if (bel[x] == bel[y])
+        continue;
+    if (part[bel[y]].r == y &amp;&amp; part[bel[y]].l &gt;= x)
+        part[bel[y]].tag += z;
+    else {
+        for (int i = y; i &gt;= part[bel[y]].l; --i)
+            a[i] += z;
+        for (int i = part[bel[y]].l; i &lt;= part[bel[y]].r; ++i)
+            sed[i] = a[i];
+        sort(sed + part[bel[y]].l, sed + part[bel[y]].r + 1);
+    }
+    for (int i = bel[x] + 1; i &lt;= bel[y] - 1; ++i)
+        part[i].tag += z;
+}</code></pre>
+<p>这就是第二题了.</p>
+<h2 id="Level-3"><a href="#Level-3" class="headerlink" title="$Level\ \ 3$"></a>$Level\ \ 3$</h2><h3 id="题面-2"><a href="#题面-2" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间加法，询问区间内小于某个值x的前驱（比其小的最大元素）。</p>
+<h3 id="数据规模与约定-1"><a href="#数据规模与约定-1" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 100000,others,ans\in INT$</p>
+<h3 id="题解-2"><a href="#题解-2" class="headerlink" title="题解"></a>题解</h3><p>其实这个题和上一题基本一样,主要是数据范围方面更加筛掉了暴力.我们只需要稍微改动一下上一题的二分,再改一改对应的操作就可以了.</p>
+<h2 id="Level-4"><a href="#Level-4" class="headerlink" title="$Level\ \ 4$"></a>$Level\ \ 4$</h2><h3 id="题面-3"><a href="#题面-3" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间加法，区间求和。</p>
+<h3 id="数据规模与约定-2"><a href="#数据规模与约定-2" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 50000,others,ans\in INT$</p>
+<h3 id="题解-3"><a href="#题解-3" class="headerlink" title="题解"></a>题解</h3><p>经典的<del>线段树</del>问题.数据范围比较小,所以我们考虑用分块来做(废话).仍然是区间加法,所以我们还是像往常一样,打好标记.但是这次需要注意的是我们要随时维护区间的和,像线段树那样给每一块打上一个和标记,当需要询问整块信息的时候直接调用即可.否则就暴力处理.需要注意许多初始化,打标记和修改的细节.由于代码冗长且与之前的题目相差无几,我就不再出示代码.</p>
+<h2 id="Level-5"><a href="#Level-5" class="headerlink" title="$Level \ \ 5$"></a>$Level \ \ 5$</h2><h3 id="题面-4"><a href="#题面-4" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间开方，区间求和。</p>
+<h3 id="数据规模与约定-3"><a href="#数据规模与约定-3" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 50000,others,ans\in INT$</p>
+<h3 id="题解-4"><a href="#题解-4" class="headerlink" title="题解"></a>题解</h3><p>又是一道经典的<del>线段树</del>问题.区间开方是不满足合并的,换句话说,区间中每个数开方不相当于区间和开方.但是我们注意到一个边界性的问题,就是0开方后仍然是0,1开方后还是1.而其他数经过至多5次开方后也会变成1.所以我们在无法整块操作的情况下仍然可以给区间打上一个$times$标记表示这个区间被整体开方过多少次.如果超过4次我们就直接给答案加上$\text{原序列中非0数的个数-原序列中0的个数}$就可以了.其他情况下我们仍然暴力开方.<br>上代码:</p>
+<pre><code class="cpp">for (int i = 1; i &lt;= n; ++i) {
+    int op, x, y, z;
+    read(op), read(x), read(y), read(z);
+    if (op) {//询问操作
+        long long res = 0;
+        if (bel[x] == bel[y])
+            for (int j = x; j &lt;= y; ++j)
+                res += a[j];
+        else {
+            for (int j = x; j &lt;= part[bel[x]].r; ++j)
+                res += a[j];
+            for (int j = y; j &gt;= part[bel[y]].l; --j)
+                res += a[j];
+        }
+        for (int j = bel[x] + 1; j &lt;= bel[y] - 1; ++j) {
+            if (part[j].times &gt; 4)//times表示被整体开方的次数
+                res += part[j].r - part[j].l + 1 - part[j].ze;
+            else //ze表示原序列中0的个数
+                for (int k = part[j].l; k &lt;= part[j].r; ++k)
+                    res += a[k];
+        }
+        printf(&quot;%lld\n&quot;, res);
+    }
+    else {//修改操作
+        if (bel[x] == bel[y])
+            for (int j = x; j &lt;= y; ++j)
+                a[j] = sqrt(a[j]);
+        else {
+            if (part[bel[x]].l == x) {
+                if (part[bel[x]].times &lt;= 4)
+                    for (int j = part[bel[x]].l; j &lt;= part[bel[x]].r; ++j)
+                        a[j] = sqrt(a[j]);
+                part[bel[x]].times++;
+            }
+            else
+                for (int j = x; j &lt;= part[bel[x]].r; ++j)
+                    a[j] = sqrt(a[j]);
+            /*为了节省篇幅,对y的操作类比省略.*/
+        }
+        for (int j = bel[x] + 1; j &lt;= bel[y] - 1; ++j) {
+            if (part[i].times &lt;= 4)
+                for (int k = part[j].l; k &lt;= part[j].r; ++k)
+                    a[k] = sqrt(a[k]);
+            part[j].times++;
+        }
+    }
+}</code></pre>
+<h2 id="Level-6"><a href="#Level-6" class="headerlink" title="$Level\ \ 6$"></a>$Level\ \ 6$</h2><h3 id="题面-5"><a href="#题面-5" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及单点插入，单点询问，数据随机生成。</p>
+<h3 id="数据规模与约定-4"><a href="#数据规模与约定-4" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 100000,others,ans\in INT$</p>
+<h3 id="题解-5"><a href="#题解-5" class="headerlink" title="题解"></a>题解</h3><p>这道题画风突变,出现了一个闻所未闻的”插入”操作.对于数组来说,要插入一个数,就要花费$\Theta(n)$的时间来把后面的元素都往后移一位.而对于链表来说,想要定位一个数则需要$\Theta(n)$的时间.这道题可以使用对二者取长补短的块状链表来实现,不过<del>我不会而且</del>我们的主题是分块,所以我们来想想分块的做法.</p>
+<p>由于分块是在数组上实现的,所以插入操作难免会需要暴力.不过普通数组的暴力需要把插入点后面所有的元素都移动,而分块只需要把组内插入点之后的元素移动就可以了.那么我们怎么实现插入呢?暴力是可以的,但我认为更好的选择是使用$STL$的$vector$,这个容器支持$insert$函数,并且能够随时记录自己的$size$.</p>
+<p>但是这样有一个问题,如果数据并非随机生成的,而是在一个块内各种插入,那么分块将逐渐退化为普通数组,进而T到飞起.所以我们考虑每$\sqrt{n}$次插入操作就把数列重新分一下块,使得复杂度不会提高很多.(为什么要每$\sqrt{n}$次就重排一次的原因请参考<a href="http://hzwer.com/8053.html" target="_blank" rel="noopener">hzwer dalao的blog</a>)并且重排之前别忘了把现在每一块中的$vector$内容赋值到原数组中.<br>代码:</p>
+<pre><code class="cpp">#include&lt;bits/stdc++.h&gt;
+#define N 200005//由于插入操作别忘了数组开大一点
+using namespace std;
+/*篇幅原因,快读省略*/
+int n, a[N], cnt = 1;
+
+struct node {
+    int l, r;
+    vector&lt;int&gt; c;//每个块的动态数组
+}part[2000];
+
+inline void reset() {//重分块函数
+    int size = sqrt(n);
+    part[1].l = 1, cnt = 1;
+    for (int i = 1; i &lt;= n; ++i) {
+        part[cnt].c.push_back(a[i]);
+        if (i % size == 0) {
+            part[cnt].r = i;
+            part[++cnt].l = i + 1;
+        }
+    }
+    part[cnt].r = n;
+    return;
+}
+
+inline void react() {//别忘了先把原数组更新为现在的样子.
+    n = 0;
+    for (int i = 1; i &lt;= cnt; ++i) {
+        if (part[i].c.empty())
+            continue;
+        for (int j = 0; j &lt; part[i].c.size(); ++j)
+            a[++n] = part[i].c[j];
+        part[i].c.clear();
+    }
+    reset();//现在可以重分块了
+    return;
+}
+
+int main() {
+    read(n);
+    for (int i = 1; i &lt;= n; ++i)
+        read(a[i]);
+    reset();//先分块
+    int temp = n, tot = 0;
+    while (temp--) {
+        int op, x, y, z;
+        read(op), read(x), read(y), read(z);
+        if (op) {
+            int i;
+            for (i = 1; i &lt;= cnt; ++i)//查询过程,先定位块
+                if (y &gt; part[i].c.size())
+                    y -= part[i].c.size();
+                else break;//定位完后剩下的就是块内的编号了.
+            printf(&quot;%d\n&quot;, part[i].c[y - 1]);
+        }
+        else {
+            tot++;//记录次数
+            for (int i = 1; i &lt;= cnt; ++i)
+                if (x &gt; part[i].c.size())
+                    x -= part[i].c.size();
+                else {
+                    part[i].c.insert(part[i].c.begin() + x - 1, y);//插入
+                    if (tot &gt; sqrt(n))//如果插入次数多了就重分块
+                        react(), tot = 0;
+                    break;
+                }
+        }
+    }
+    return 0;
+} </code></pre>
+<h2 id="Level-7"><a href="#Level-7" class="headerlink" title="$Level\ \ 7$"></a>$Level\ \ 7$</h2><h3 id="题面-6"><a href="#题面-6" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间乘法，区间加法，单点询问。</p>
+<h3 id="数据规模与约定-5"><a href="#数据规模与约定-5" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 100000,others,ans\in INT$</p>
+<h3 id="题解-6"><a href="#题解-6" class="headerlink" title="题解"></a>题解</h3><p>这道题的画风逐渐正常,又是一道经典的<del>线段树</del>问题.线段树在维护这两种操作的时候,打了两种标记,所以分块也打了两种标记.但是这两种标记显然是有区别的.因为乘法运算的优先级高于加法.那么我们怎么来维护呢?假设现在一块上先乘后加,得到一个加法标记和一个乘法标记.那么我们考虑如果现在进行整块的加,会发生什么呢?显然,只有加法标记会增加,而影响不到乘法标记.那如果进行乘法呢?乘法和加法标记都需要乘上这个数.所以我们按照这个优先顺序进行整块的操作,非整块的时候我们只能通过把这一块重构暴力来做.<br>块内重构:</p>
+<pre><code class="cpp">inline void rebuild(int x) {
+    for (int i = part[x].l; i &lt;= part[x].r; ++i)
+        a[i] = (a[i] * part[x].tagm + part[x].taga) % mod;
+    part[x].taga = 0, part[x].tagm = 1;
+    return;
+}</code></pre>
+<p>其他代码和之前的类似.</p>
+<h2 id="Level-8"><a href="#Level-8" class="headerlink" title="$Level\ \ 8$"></a>$Level\ \ 8$</h2><h3 id="题面-7"><a href="#题面-7" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及区间询问等于一个数c的元素，并将这个区间的所有元素改为c。</p>
+<h3 id="数据规模与约定-6"><a href="#数据规模与约定-6" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 100000,others,ans\in INT$</p>
+<h3 id="题解-7"><a href="#题解-7" class="headerlink" title="题解"></a>题解</h3><p>到了这个题我才知道,原来块内重构是非常常见的,是我之前把它的复杂度想得太高,结果代码冗长时间也没有节省很多.这个题的询问非常奇怪,又是一个线段树维护不了的题目.分块源于暴力而高于暴力,所以它问什么我们打什么标记.我们给每个块打一个”块内元素是否全部相等,如果相等的话,等于什么”的标记.这个标记听起来很玄学,实际上,当块内标记都相等时,这个标记就赋值为块内的值,否则就赋值为$-inf$.这样我们每当遇到一个区间内有不同元素的块的时候,都要用暴力来统计.这看起来会T(实际上像我一样写丑了也会T),实际上每一块这一次扫完之后,就被赋值成一样的了.下次整块操作的时候就可以直接$\Theta(1)$统计答案了.所以总的复杂度是可以接受的.</p>
+<h2 id="Level-9"><a href="#Level-9" class="headerlink" title="$Level\ \ 9$"></a>$Level\ \ 9$</h2><h3 id="题面-8"><a href="#题面-8" class="headerlink" title="题面"></a>题面</h3><p>给出一个长为n的数列，以及n个操作，操作涉及询问区间的最小众数。</p>
+<h3 id="数据规模与约定-7"><a href="#数据规模与约定-7" class="headerlink" title="数据规模与约定"></a>数据规模与约定</h3><p>对于$100$%的数据,$1\le n\le 100000,others,ans\in INT$</p>
+<h3 id="题解-8"><a href="#题解-8" class="headerlink" title="题解"></a>题解</h3><p>来到了$BOSS$关.区间众数是一道经典难题.有的许多方法.这里讲一种基于分块的在线做法.</p>
+<p>分块的难点在于它不具有区间可加性.也就是知道两块的众数并不能直接得出这两块整体的众数.但是判断众数的本质是一个数出现的次数,这是满足区间可加性的.我们考虑从这方面来下手.对于分块,我们一贯的思路是整块统计,两端暴力.这一道题也不例外.我们的众数要么是在整块统计中得出的,要么是在两端的暴力过程中得出的.所以对于整块,我们直接统计众数,然后暴力扫描两端看能不能取代已经得到的答案.</p>
+<p>现在问题来了,怎么统计若干块之间的众数呢?如果要快速得出,我们肯定不能现问现扫,而是要预处理出来再做.因为区间长度是任意的,我们也应当处理出连续多块之间的众数.前面说了众数的本质是出现次数.我们设t[i][j]表示i在前j块中的出现次数.为了方便统计我们要先离散化以下,让i表示第i小的数.然后固定一个最右边的块,向左扫描到整个序列的左端,中途维护众数,这里出示代码来加强理解:</p>
+<pre><code class="cpp">for (int i = 1; i &lt;= bel[n]; ++i) {//most[i][j]表示第i块到第j块的最小众数.
+    for (int j = rt[i]; j; --j) {//t[i][j]表示i在前j块中出现的次数,类似于前缀和
+        if (bel[j] != bel[j + 1])//区间分界线先继承一下,方便对比
+            most[bel[j]][i] = most[bel[j] + 1][i];
+        t[lsh[j].rk][i]++;//出现次数+1
+        int nowtemp = t[lsh[j].rk][i], nowans = t[most[bel[j]][i]][i];//检验是否能够取代
+        if (nowtemp &gt; nowans || (nowtemp == nowans &amp;&amp; lsh[j].rk &lt; most[bel[j]][i]))
+            most[bel[j]][i] = lsh[j].rk;//次数多或者次数相等值小就可以取代.
+    }
+}</code></pre>
+<p>现在我们已经知道如何预处理众数了.做法比较暴力.接下来我们就考虑询问.实际上过程是完全类似的.这里直接上代码,并不难理解.</p>
+<pre><code class="cpp">//ap[i]表示i出现的次数,是一个暂存数组
+int x, y, ans;
+read(x), read(y), ans = most[bel[x] + 1][bel[y] - 1];
+if (bel[x] == bel[y]) {
+    for (int i = x; i &lt;= y; ++i) {
+        ++ap[lsh[i].rk];
+        int nowtemp = ap[lsh[i].rk], nowans = ap[ans];
+        if (nowtemp &gt; nowans || (nowtemp == nowans &amp;&amp; lsh[i].rk &lt; ans))
+            ans = lsh[i].rk;
+    }
+    printf(&quot;%d\n&quot;, ans = rev[ans]);//别忘了ans其实是一个离散化后的排名
+}
+else {
+//这里通过t数组后减去前来实现中间完整块内出现次数的统计,因为次数满足可加性
+    for (int i = x; i &lt;= rt[bel[x]]; ++i) {
+        ++ap[lsh[i].rk];
+        int nowtemp = ap[lsh[i].rk] + t[lsh[i].rk][bel[y] - 1] - t[lsh[i].rk][bel[x]];
+        int nowans = ap[ans] + t[ans][bel[y] - 1] - t[ans][bel[x]];
+        if (nowtemp &gt; nowans || (nowtemp == nowans &amp;&amp; lsh[i].rk &lt; ans))
+            ans = lsh[i].rk;
+    }
+    for (int i = lt[bel[y]]; i &lt;= y; ++i) {
+        ++ap[lsh[i].rk];
+        int nowtemp = ap[lsh[i].rk] + t[lsh[i].rk][bel[y] - 1] - t[lsh[i].rk][bel[x]];
+        int nowans = ap[ans] + t[ans][bel[y] - 1] - t[ans][bel[x]];
+        if (nowtemp &gt; nowans || (nowtemp == nowans &amp;&amp; lsh[i].rk &lt; ans))
+            ans = lsh[i].rk;
+    }
+    printf(&quot;%d\n&quot;, ans = rev[ans]);
+}
+for (int i = x; i &lt;= rt[bel[x]]; ++i)
+    ap[lsh[i].rk] = 0;//清空暂存器
+for (int i = lt[bel[y]]; i &lt;= y; ++i)
+    ap[lsh[i].rk] = 0;</code></pre>
+<p>这就是经典的区间众数问题了.到此我们已经完成了所有的分块入门模板题,体会到分块的原则就是整块统计,两端暴力.通过打标记和块内重构的方法,在保证正确性地情况下来尽量方便省时地实现目的.其时间复杂度往往劣于线段树等高级数据结构,但是其灵活性并不差,并且非常直观.</p>
+<p>感谢<a href="https://www.cnblogs.com/suwakow/" target="_blank" rel="noopener">@suwakow</a>给予的帮助和参考</p>
+<h1 id="textit-Fin"><a href="#textit-Fin" class="headerlink" title="$\textit{Fin}$"></a>$\textit{Fin}$</h1>
+        </div>
+        <!-- .entry-content -->
+        <!--
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer>--><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/10/11/字符串DP3/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/h2*3wPuaRzVWUuiOZh4vx.xRPNWS7fM4IL4pahK8NDY!/r/dFMBAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/h2*3wPuaRzVWUuiOZh4vx.xRPNWS7fM4IL4pahK8NDY!/r/dFMBAAAAAAAA">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                字符串/序列类DP(三)</h3>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/10/04/整体二分初步/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/xSPwhaKl89fQNvsz*dgMvtEJPpyVjAVwAmiBC78aowQ!/r/dDYBAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/xSPwhaKl89fQNvsz*dgMvtEJPpyVjAVwAmiBC78aowQ!/r/dDYBAAAAAAAA">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                整体二分初步</h3>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+  <script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+          clientID: 'efa7ce8da306448c7f8b',
+          clientSecret: '7a9bc1e56f60b7cc3fac24c448dd358aaa393aa7',
+          id: window.location.pathname,
+          repo: 'i-cookie.github.io',
+          owner: 'i-cookie',
+          admin: 'i-cookie'
+      })
+      gitalk.render('gitalk-container')
+    </script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="/about/" class="profile gravatar"><img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA" itemprop="image" alt="blog" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://i-cookie.github.io" itemprop="url" rel="author">i-cookie's blog</a>
+            </h3>
+          </div>
+        </div>
+        <p><i class="iconfont icon-write"></i>——Gensokyo</p>
+      </section>
+      </div><!-- #primary -->
+      </div>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+
+
+
+
+    </div>    
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+  <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 i-cookie<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<div id="gitalk-container"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+  
+  
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">i-cookie'sblog</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/i-cookie" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/经验总结/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  经验总结
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/课堂笔记/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  课堂笔记
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/问题回顾/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  问题回顾
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随笔/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  随笔
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友链
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="598512469"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>

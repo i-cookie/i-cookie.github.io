@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  
+  <title itemprop="name">网络流学习笔记(upd 19-10-27) | —幻想郷に、遊ぶがいい—</title>
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  <meta http-equiv="x-dns-prefetch-control" content="on">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+SerifMerriweather|Merriweather+Sans|Source+Code+Pro|Ubuntu:400,700|Noto+Serif+SC" media="all">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="stylesheet" id="saukra_css-css" href="/css/style.css" type="text/css" media="all">
+  <link rel="stylesheet" href="/css/lib.min.css" media="all">
+  <link rel="stylesheet" href="/css/font.css" media="all">
+  <link rel="stylesheet" href="/css/insight.css" media="all">
+  <link rel="stylesheet" href="/css/jquery.fancybox.min.css" media="all">
+  <link rel="stylesheet" href="/css/zoom.css" media="all">
+  <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+  <!--gittak-->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+<!--   <link rel="stylesheet" id="saukra_css-css" href="https://2heng.xin/wp-content/cache/autoptimize/css/autoptimize_ad42a61f4c7d4bdd9f91afcff6b5dda5.css
+" type="text/css" media="all"> -->
+  <script>
+  /*Initial Variables*/
+  var mashiro_option = new Object();
+  var mashiro_global = new Object();
+  mashiro_option.NProgressON = true;
+  /* 
+   * 邮箱信息之类的东西可以填在这里，这些js变量基本都作用于sakura-app.js
+   * 这样的设置仅是为了方便在基于PHP开发的主题中设置js变量，既然移植到了Node上，我想或许可以精简这一逻辑吧
+   */
+  mashiro_option.email_domain = "";
+  mashiro_option.email_name = "";
+  mashiro_option.cookie_version_control = "";
+  mashiro_option.qzone_autocomplete = false;
+  mashiro_option.site_name = "i-cookie'sblog";
+  mashiro_option.author_name = "blog";
+  mashiro_option.site_url = "https://i-cookie.github.io";
+  mashiro_option.v_appId = "GyC3NzMvd0hT9Yyd2hYIC0MN-gzGzoHsz";
+  mashiro_option.v_appKey = "mgOpfzbkHYqU92CV4IDlAUHQ";
+  mashiro_option.mathjax = "1";
+  mashiro_option.qq_api_url = "https://api.mashiro.top/qqinfo/"; 
+  mashiro_option.qq_avatar_api_url = "https://api.mashiro.top/qqinfo/";
+
+  // mashiro_option.jsdelivr_css_src = "https://cdn.jsdelivr.net/gh/moezx/cdn@3.4.5/css/lib.min.css";
+  // mashiro_option.float_player_on = true;
+
+  /*End of Initial Variables*/
+  </script>
+  <script type="text/javascript">
+  var bg = "https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/4.jpg,https://cdn.jsdelivr.net/gh/Tian-Xing/cdn@1.0/cartoon/22.jpg,https://r.photo.store.qq.com/psb?/V14cBDik23h2lM/fkjvyk19nmVuAqFiGsTTf58Xe5w2tysVEDEYaCfiBx8!/r/dEkBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2wRV.DVaNqAzpap1pW56tmH*RkrFX4sN2ClDXWPHvtc!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/TKTmELZ0ZpbjsN20cQoyD0CJ.gM9YzTWr09AxYPumtY!/r/dDYBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/rgUiPqQGKQZl0zikL4gLnyfzmjgRWLHdyr2Fk8OzZv4!/r/dFQBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/5HRW2gzNEcYeLc.qj9PS7Gxug*jsRfDMwlV4GWazGBI!/r/dLYAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/H*WCmf2jcEsNTy2FJiO5XQuZFkKQhsORG.5D9lLKJ5Q!/r/dMMAAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/CxhcuMVp3a.VtSnr3qjeA9vaC.Tcgeu2gxHzsMhkXDw!/r/dE0BAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/QNjT83V1DkDSIwQPpgsRy*5dUQ.mvpX2TtiaO4bN2A8!/r/dAUBAAAAAAAA,http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/aYbgr1nve.t4HaYF36jBOOz*Lf2rI3M2ELhIdR6wzKk!/r/dL4AAAAAAAAA".split(",");
+  var bgindex = Math.floor(Math.random()*bg.length);
+  if (!!window.ActiveXObject || "ActiveXObject" in window) { //is IE?
+    alert('朋友，IE浏览器未适配哦~');
+  }
+  </script>
+  <style type="text/css">
+  .hljs-ln{border-collapse:collapse}.hljs-ln td{padding:0}.hljs-ln-n:before{content:attr(data-line-number)}
+  </style>
+  <style type="text/css">.site-top .lower nav{display:block !important;}.author-profile i,.post-like a,.post-share .show-share,.sub-text,.we-info a,span.sitename,.post-more i:hover,#pagination a:hover,.post-content a:hover,.float-content i:hover{color:#FE0000}.feature i,.download,.navigator i:hover,.links ul li:before,.ar-time i,span.ar-circle,.object,.comment .comment-reply-link,.siren-checkbox-radio:checked + .siren-checkbox-radioInput:after{background:#FE0000}::-webkit-scrollbar-thumb{background:#FE0000}.download,.navigator i:hover,.link-title,.links ul li:hover,#pagination a:hover,.comment-respond input[type='submit']:hover{border-color:#FE0000}.entry-content a:hover,.site-info a:hover,.comment h4 a,#comments-navi a.prev,#comments-navi a.next,.comment h4 a:hover,.site-top ul li a:hover,.entry-title a:hover,#archives-temp h3,span.page-numbers.current,.sorry li a:hover,.site-title a:hover,i.iconfont.js-toggle-search.iconsearch:hover,.comment-respond input[type='submit']:hover{color:#FE0000}.comments .comments-main{display:block !important;}.comments .comments-hidden{display:none !important;}background-position:center center;background-attachment:inherit;}
+  </style>
+</head>
+</html>
+<body class="page-template page-template-user page-template-page-analytics page-template-userpage-analytics-php page page-id-1297 chinese-font serif isWebKit">
+  <style type="text/css">
+    @import url("/code.css");
+  </style>
+  <div class="skin-menu no-select" id="mainskin" style="position: fixed;bottom:65px;left:31px;">
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> background <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+      <ul class="menu-list"> <li id="white-bg"> 
+          <i class="fa fa-television" aria-hidden="true">
+          </i>
+          </li> 
+          <li id="sakura-bg"> 
+              <i class="iconfont icon-sakura">
+              </i>
+          </li>
+          <li id="gribs-bg">
+              <i class="fa fa-slack" aria-hidden="true">
+              </i>
+          </li>
+          <li id="KAdots-bg">
+              <i class="iconfont icon-dots">
+              </i>
+          </li>
+          <li id="totem-bg">
+              <i class="fa fa-optin-monster" aria-hidden="true">
+              </i>
+          </li>
+          <li id="pixiv-bg">
+              <i class="iconfont icon-pixiv">
+              </i>
+          </li>
+          <li id="bing-bg">
+            <i class="fa fa-picture-o" aria-hidden="true">
+            </i>
+          </li>
+          <li id="dark-bg">
+              <i class="fa fa-moon-o" aria-hidden="true">
+              </i>
+          </li>
+      </ul>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> font <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="font-family-controls row-container">
+    <button type="button" class="control-btn-serif " data-mode="serif" onclick="mashiro_global.font_control.change_font()">Serif</button>
+    <button type="button" class="control-btn-sans-serif" data-mode="sans-serif" onclick="mashiro_global.font_control.change_font()">Sans Serif</button>
+  </div>
+  <hr>
+  <p style="text-align:center;font-family:'Monaco';font-weight:bold;color:#444"><i style="color:grey" class="fa fa-chevron-left"></i> script <i style="color:grey" class="fa fa-chevron-right"></i></p>
+  <div class="theme-controls row-container">
+  <ul class="menu-list">
+    <li id="empty-effect">
+      <i class="fa fa-ban">
+      </i>
+    </li>
+    <li id="sakura-rain-effect">
+      <i class="iconfont icon-sakura">
+      </i>
+    </li>
+    <li id="snowy-effect">
+      <i class="fa fa-snowflake-o">
+      </i>
+    </li>
+    <li id="lines-effect">
+      <i class="fa fa-chevron-left">
+      </i>
+    </li>
+    <li id="colorful-belts-effect">
+      <i class="fa fa-map"></i>
+      </i>
+    </li>
+    <li id="words-rain-effect">
+      <i class="fa fa-font"></i>
+    </li>
+    <li id="point-rain-effect">
+      <i class="iconfont icon-dots"></i>
+    </li>
+    <li id="rain-drop-effect">
+      <i class="fa fa-tint"></i>
+    </li>
+  </ul>
+  </div>
+  <canvas id="night-mode-cover">
+  </canvas>
+</div> 
+  <div class="changeSkin-gear no-select" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%; visibility: visible; bottom: 0px;"> 
+    <div class="keys" id="setbtn"> 
+      <button id="open-skinMenu">
+          <style>
+          button#open-skinMenu{
+              transition: all 0.2s linear 0s;
+              outline:none;
+              position:fixed;
+              bottom:13px;
+              left:15px;
+              font-size:16px;
+              background-color: rgba(255,255,255,.95);
+              border-radius: 20px;
+              box-shadow: 0 3px 8px 0 rgba(0,0,0,0.1), 0 3px 8px 0 rgba(0,0,0,0.1);
+          }
+          button#open-skinMenu:hover{
+              transition: all 0.2s linear 0s;
+              background-color: red;
+              color: rgba(255,255,255);
+          }
+          </style>
+          <i class="iconfont icon-gear inline-block rotating">
+        </i> 
+          SCHEME TOOL | 主题工具 
+      </button>
+    </div> 
+  </div>
+  <div class="scrollbar" id="bar">
+  </div>
+  <a href="#" class="cd-top faa-float animated"></a>
+  <section id="main-container">
+    <div class="headertop ">
+  <div id="banner_wave_1"></div>
+  <div id="banner_wave_2"></div>
+  <figure id="centerbg" class="centerbg">
+    <div class="focusinfo no-select">
+      <div class="header-tou">
+        <a href="https://i-cookie.github.io">
+          <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+        </a>
+      </div>
+      <div class="header-info">
+        <p>——Gensokyo</p>
+        <div class="top-social_v2">
+          <li id="bg-pre">
+            <img class="flipx" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+          
+            
+              
+                <li>
+                  <a href="https://github.com/i-cookie" target="_blank" class="social-github" title="github">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/github.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="wangyiyun">
+                    <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/social/wangyiyun.png">
+                  </a>
+                </li>
+              
+            
+              
+                <li>
+                  <a href="" target="_blank" class="social-github" title="luogu">
+                    <img src="https://cdn.jsdelivr.net/gh/ctz45562/cdn@1.4.1/social/luogu.jpg">
+                  </a>
+                </li>
+              
+            
+          
+          <li id="bg-next">
+            <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/next-b.svg">
+          </li>
+        </div>
+      </div>
+    </div>
+  </figure>
+  <div id="video-container" style="">
+    <video style="object-fit: fill" id="bgvideo" class="video" video-name="" src="" width="auto" preload="auto">
+    </video>
+    <div id="video-btn" class="loadvideo videolive">
+    </div> 
+    <div id="video-add">
+    </div>
+    <div class="video-stu">
+    </div>
+  </div>
+  <div class="headertop-down faa-float animated" onclick="headertop_down()">
+    <span>
+      <i class="fa fa-chevron-down" aria-hidden="true">
+      </i>
+    </span>
+  </div>
+</div>
+    <div id="page" class="site wrapper">
+      <header class="site-header no-select gizle sabit" role="banner">
+  <div class="site-top">
+    <div class="site-branding">
+      <span class="site-title">
+        <span class="logolink moe-mashiro">
+          <a href="/">
+            <span class="sakurasono">i-cookie&#39;s</span>
+            <span class="shironeko">blog</span>
+          </a>
+        </span>
+      </span>
+    </div>
+    <div class="searchbox search-form-submit">
+      <i class="iconfont js-toggle-search iconsearch icon-search">
+      </i>
+    </div>
+    <div id="show-nav" class="showNav mobile-fit">
+      <div class="line line1">
+      </div>
+      <div class="line line2">
+      </div>
+      <div class="line line3">
+      </div>
+    </div>
+    <div class="lower-cantiner">
+      <div class="lower">
+        <nav class="mobile-fit-control hide">
+          <ul id="menu-new" class="menu">
+            
+              <li>
+                <a href="/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+                    首页
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/archives/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+                    归档
+                  </span>
+                </a>
+                
+                  <ul class="sub-menu">
+                    
+                      <li>
+                        <a href="/categories/经验总结/">
+                          <i class="fa fa-code" aria-hidden="true"></i>
+                          经验总结
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/课堂笔记/">
+                          <i class="fa fa-book" aria-hidden="true"></i>
+                          课堂笔记
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/问题回顾/">
+                          <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                          问题回顾
+                        </a>
+                      </li>
+                    
+                      <li>
+                        <a href="/categories/随笔/">
+                          <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                          随笔
+                        </a>
+                      </li>
+                    
+                  </ul>
+                
+              </li>
+            
+              <li>
+                <a href="/tags/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+                    标签
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/links/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+                    友链
+                  </span>
+                </a>
+                
+              </li>
+            
+              <li>
+                <a href="/about/">
+                  <span class="faa-parent animated-hover">
+                    <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+                    关于
+                  </span>
+                </a>
+                
+              </li>
+            
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <link rel="stylesheet" type="text/css" href="/css/sharejs.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+<div class="pattern-center-blank"></div>
+
+  <div class="pattern-center single-center">
+    <!-- 有配图默认渲染第一张 -->
+    <div class="pattern-attachment-img lazyload" style="background-image: url(http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Z*BSuhUMdbeVIKAoMRFH0mPNm46bl*s2k4Xi0sfO.0g!/r/dL4AAAAAAAAA);" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Z*BSuhUMdbeVIKAoMRFH0mPNm46bl*s2k4Xi0sfO.0g!/r/dL4AAAAAAAAA">
+    </div>
+    <header class="pattern-header single-header">
+      <h1 class="entry-title">
+      网络流学习笔记(upd 19-10-27)</h1>
+      <p class="entry-census">
+        <span>
+          <a href="">
+            <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+          </a>
+        </span>
+        <span>
+          <a href="">i-cookie</a>
+        </span>
+        <span class="bull">
+          <i class="fa fa-calendar" aria-hidden="true"></i></span>
+        2019-10-24<span class="bull">
+          <i class="fa fa-eye" aria-hidden="true"></i></span>
+      <span id="busuanzi_value_page_pv"></span>次阅读</p>
+      
+        
+          <div class="tags">
+            <style scoped>
+              a{color: #fff;}
+            </style>
+            &nbsp<i class="fa fa-tag" aria-hidden="true"></i>&nbsp
+            <a href="/tags/图论/">图论</a>&nbsp &nbsp<a href="/tags/网络流/">网络流</a>
+          </div>
+      
+    </header>
+  </div>
+
+<div id="content" class="site-content">
+  <div id="primary" class="content-area">
+    <main id="main" class="site-main" role="main">
+      <article id="post-1" class="post-1 post type-post status-publish format-standard has-post-thumbnail hentry category-uncategorized">
+        <!--<div class="toc"></div>-->
+        <!--<div class="toc-entry-content">套嵌目录使用（主要为了支援评论）-->
+        
+        <div class="entry-content">
+          <blockquote>
+<h1 id="曾经令我望而却步的知识-现在我要拿下它"><a href="#曾经令我望而却步的知识-现在我要拿下它" class="headerlink" title="曾经令我望而却步的知识,现在我要拿下它!"></a>曾经令我望而却步的知识,现在我要拿下它!</h1></blockquote>
+<h2 id="网络流的定义"><a href="#网络流的定义" class="headerlink" title="网络流的定义"></a>网络流的定义</h2><p>​        所谓网络或容量网络指的是一个连通的赋权有向图$D=(V,E,C)$, 其中$V$是该图的顶点集，$E$是有向边(即弧)集，$C$是弧上的容量。此外顶点集中包括一个起点和一个终点。网络上的流就是由起点流向终点的可行流，这是定义在网络上的非负函数，它一方面受到容量的限制，另一方面除去起点和终点以外，在所有中途点要求保持流入量和流出量是平衡的。 </p>
+<p>(来自百度百科)</p>
+<p>​        “网络流”本身就是一个非常形象的名字.我们可以类比输水管网络或者河网.对于一张有向图,有一个起点$S$和终点$T$,我们可以类比成水源和入海口.在这个基本模型上我们又定义了一些概念:</p>
+<ul>
+<li>源点:起点$S$, 即水只流出的点.</li>
+<li>汇点:终点$T$,即水只汇入的点.</li>
+<li>流量:一条河道(边)上流过的流量</li>
+<li>容量:一条河道(边)能容纳的最大流量</li>
+<li>残量:一条河道(边)剩余未使用的容量,即容量-流量.</li>
+</ul>
+<p>其中,一条边$(u,v)$的流量常表示为$f(u,v)$,容量表示为$c(u,v)$</p>
+<h2 id="网络流的基本性质"><a href="#网络流的基本性质" class="headerlink" title="网络流的基本性质"></a>网络流的基本性质</h2><ol>
+<li>对于任意一条边,都有$f(u,v)\le c(u,v)$.其正确性显然,要不然河道就会溢出(或者水管爆裂)</li>
+<li>对于一条边$(u,v)$的反向边$(v,u)$,有$f(u,v)=-f(v,u)$.</li>
+<li>$\forall x\neq S,x\neq T,\sum_{(u,x)\in E}f(u,x)=\sum_{(x,v)\in E}f(x,v)$.这句话意思是除了$S,T$以外,其他点的流入量和流出量总是相等的,不能储存水.</li>
+</ol>
+<h2 id="最大流"><a href="#最大流" class="headerlink" title="最大流"></a>最大流</h2><p>​        最大流说的是整个网络的流量最大值.整个网络的流量就是$\sum_{(S,v)\in E}f(S,v)$,即从源点流出的流量之和.而一般可能河道的流量并不是被充分使用的,可能会有许多残量.最大流指的是尽量利用<strong>可利用的</strong>残量,能达到的最大流量.</p>
+<p>​        我们应该如何求解最大流呢?考虑一下,如果我们有一条从$S$到$T$的路径,上面所有边都没有被充分利用,那么我们是不是可以往这条路径中加水,从而在一定限度内增大流量呢?这条路径叫做增广路.形式化地,如果一条从$S$到$T$的路径$P$满足$\forall (u,v)\in P,f(u,v)&lt;c(u,v)$,则称路径$P$是一条增广路.我们可以向这条路径中加入多少水呢?显然是加到其中一条边满了为止,之后再加流量也不会增大了.换句话说,我们流量增加的量就是增广路上的最小残量.</p>
+<p>​        接下来我们来讲解一下增广路的求法.</p>
+<h3 id="增广路算法-Dinic-Only"><a href="#增广路算法-Dinic-Only" class="headerlink" title="增广路算法(Dinic Only)"></a>增广路算法(Dinic Only)</h3><p>Dinic算法可以用来求二分图的最大匹配数,也可以用来求增广路.其基本思想如下:</p>
+<ol>
+<li>在残量网络上进行$BFS$来给节点分层</li>
+<li>在分层图上进行$DFS$寻找增广路,找到后回溯时更新这条边的剩余流量.</li>
+</ol>
+<p>​        其中,”残量网络”指的是由原图的所有节点和残量大于0的所有”未满”的边组成的图.我们假设$d[x]$表示从源点到$x$所经过的边数.然后按$d$对节点进行分层,这样我们最终一定会得到一张无环的图,即一个$DAG$.然后我们不断寻找增广路并向这条路中增大流量使得它不再是增广路.最终没有能够增广这个网络的路径的时候,这个网络流的流量就达到了最大值.</p>
+<p>​        但是,我们DFS是按照扫描出边的顺序来进行的,可能我们当前选择了$(u,v)$,但其实选择$(u,x)$来增广更优.因此我们要维护一个”反悔”操作.我们可以通过在反向边上加流量来达到.比如我们一开始选择了$(u,v)$,但是应该选择$(u,x),(y,v)$,这就相当于$(u\rightarrow v),(y\rightarrow v\rightarrow u\rightarrow x)$,让$(y,x)$路过的$(v,u)$和之前的劣解$(u,v)$相抵消,并一起流向了$x$,同时又有$(y,v)$,因此相当于反悔并选择了更优解.</p>
+<p>​        操作上,为了方便地维护相反边,我们可以使用”成对储存”的方法,把边的编号从2开始,即2,3互为反向边,4,5互为反向边.这样如果有一条边$x$,那么它的反向边就是$x\ xor\ 1$.</p>
+<p>​        我们已经说了$Dinic$算法的流程,接下来配合注释看一下代码实现.</p>
+<pre><code class="cpp">#include &lt;bits/stdc++.h&gt;
+#define inf 1145141919
+#define N 50005
+#define M 300005
+using namespace std;
+
+int n, m, S, T, noe, maxflow;
+int to[M], len[M], nxt[M], head[N], dep[N], cur[N];
+queue&lt;int&gt; q;//d指的是depth,即对图的分层,cur数组用来进行当前弧优化,下面会说到
+
+inline void addedge(int from, int t, int l) { 
+    len[++noe] = l, nxt[noe] = head[from], head[from] = noe, to[noe] = t;
+    len[++noe] = 0, nxt[noe] = head[t], head[t] = noe, to[noe] = from;
+    return;//这里的len指的是残量,一开始没有反向边,所以是0,而正向边没有流量流过,所以是满的.
+}
+
+inline bool bfs() {
+    memset(dep, 0, sizeof(dep));//多次bfs要清空
+    memcpy(cur, head, sizeof(cur));//cur数组指的是现在增广到哪一条边了,
+    while (!q.empty()) q.pop();//记录cur的目的是忽略掉那些已经满了的没用的边.
+    q.push(S), dep[S] = 1;//初始化
+    while (!q.empty()) {
+        int temp = q.front(); q.pop();
+        for (int i = head[temp]; i; i = nxt[i])
+            if (len[i] &amp;&amp; !dep[to[i]]) {
+                q.push(to[i]);
+                dep[to[i]] = dep[temp] + 1;//分层
+                if (to[i] == T)
+                    return true;
+            }
+    }
+    return false;
+}
+
+int dinic(int now, int flow) {//源点能为当前点提供的最大流量.
+    if (now == T || !flow) return flow;//到了终点就回溯
+    int ret = 0;//ret统计了从这个点出发的所有边得到的增广量
+    for (int i = cur[now]; i; i = nxt[i]) {//只扫需要扫的边
+        cur[now] = i;
+        if (dep[to[i]] == dep[now] + 1 &amp;&amp; len[i]) {//是图的下一层而且还有可以利用的容量
+            int temp = dinic(to[i], min(flow - ret, len[i]));//递归下去,返回途中的最小流量
+            len[i] -= temp, len[i ^ 1] += temp;//回溯时的增广操作
+            ret += temp;//每个点可能有多条出边,流量变化是总和
+        }
+        if (ret == flow) return ret;//源点只能提供这些流量,再增广也没有意义了
+    }
+    if (!ret) dep[now] = -1;//如果扫完全部都没有得到任何增广量,这个点就没用了
+    return ret;
+}
+
+int main() {
+    scanf(&quot;%d%d&quot;, &amp;n, &amp;m);
+    scanf(&quot;%d%d&quot;, &amp;S, &amp;T);//读入源点和汇点
+    noe = 1;//成对储存的技巧
+    for (int i = 1, x, y, z; i &lt;= m; ++i) {
+        scanf(&quot;%d%d%d&quot;, &amp;x, &amp;y, &amp;z);
+        addedge(x, y, z);//从x到y有一条流量为z的边
+    }
+    int flow = 0;//每次的增广量
+    while (bfs())//如果还有可以增广的从S到T的路径
+        while (flow = dinic(S, inf))
+            maxflow += flow;//统计增广量
+    cout &lt;&lt; maxflow &lt;&lt; endl;//输出最终结果
+    return 0;
+}</code></pre>
+<h2 id="最小割"><a href="#最小割" class="headerlink" title="最小割"></a>最小割</h2><h3 id="网络流的割"><a href="#网络流的割" class="headerlink" title="网络流的割"></a>网络流的割</h3><p>​        割：设$C$为网络$G$中一些弧的集合，若从$G$中删去$C$中的所有弧能使得从源点$S$到汇点$T$的路集为空集时，称$C$为$S$和$T$间的一个割。通俗理解，一个图或网络的割，表示一个切面或切线，将图或网络分为分别包含源点和汇点的两个子集，该切线或切面与网络相交的边的集合，称为图像的割。</p>
+<p>(百度百科)</p>
+<p>​        其实我们也可以类比无向图的割边.不同的是,如果割边是一条边,而割是边的集合,删去割边无向图将不会连通,而删去割中所有的边网络也会分成分别包含源点和汇点的两个没有边相连的部分.如果沿用河道的类比,那么一个割就是一些河道的集合,满足如果在这些河道中都建立水坝,将会没有水能够流向汇点.</p>
+<h3 id="最大流最小割定理"><a href="#最大流最小割定理" class="headerlink" title="最大流最小割定理"></a>最大流最小割定理</h3><p>这个定理的内容非常简洁明了:<strong>在任何网络中,最大流量=最小割容量</strong></p>
+<p>​        事实上可以感性理解这个定理.我们知道,网络的流量是从源点流出的流量之和,那么如果我们能找到一个割,就可以把这张图分成两个不相连的部分,一部分包含源点,一部分包含汇点.这样我们可以把这个网络想象成水管网络,节点是水管的交点,我们会发现所有的流量都从断点流出去了,无论流量有多大.所以我们发现任何一个流都一定$\le$ 任何一个割的容量.</p>
+<p>​        然后我们来考虑最大流和最小割之间的关系:流的上限(最大流)显然是受到了网络中容量最小的若干边的限制,而最小割显然是包括那些边的.换言之,正是因为一些比较窄的河道限制了<strong>所有</strong>从$S$到$T$的路径上的流量,所以最大流就只能达到<strong>这些窄河道的容量和</strong>.同时,由于把这些河道去除则会使得<strong>所有</strong>从$S$到$T$的路径都缺一块(即断掉),且这些河道是相对最窄的,所以它们构成了最小割,最小割的容量是<strong>这些窄河道的容量和</strong>.因此我们得到:<strong>最大流=最小割</strong></p>
+<h3 id="例题-小M的作物"><a href="#例题-小M的作物" class="headerlink" title="例题:小M的作物"></a>例题:<a href="https://www.luogu.org/problem/P1361" target="_blank" rel="noopener">小M的作物</a></h3><p>​        这个题乍一看像是$DP$,但是实际上并不是.这道题体现了网络流的难点:建图.只要知道了图,求什么都好说,关键是以什么为流量,在谁与谁之间连边.我们首先考虑没有组合的情况,这种情况比较好连边,也就是以$0$点为$A$田地,$n+1$点为$B$田地,在田地与作物之间连接以收益为流量的边.然后我们考虑到,一个作物只能种在一块田地里啊,那就意味着在一种作物与两个田地的连边中,我们必须要切断一条.最终使得$A$田地和$B$田地没有同时相连的作物,换句话说,形成两个独立的部分.这不就是最小割模型吗?其实这种模型还有一个名字:<strong>两者取一式问题</strong>.</p>
+<p>​        然后问题来了,还有组合呢,这怎么办呢?我们知道,组合其实就是一组作物.这组作物共同拥有一个额外利益$c$.但是一条边显然不能同时指向两个点,所以我们建立一个虚点$x$同时代表组合内部的作物.可以结合下图理解.组$x$中含有$1$和$2$.作为”替身”,我们应该要求从$x$出发也能够走到$1,2$的出边,而且中途不能经过其他原有的边.因此我们从$x$向$1,2$连边,就可以直接走到$1,2$然后走它们的出边了.但是这条新边代表的是<strong>$x$和$1,2$的关系,而不是流量</strong>,所以为了不让它影响最终结果,我们把它设为<strong>“割不断”</strong>的边,也就是容量为$inf$.</p>
+<p>​        同时从题意来考虑,如果$1$被分给了$B$田地,那么就代表着从$A$田地出发是不能到达$1$的.然而从$A$田地到$1$<strong>有且只有</strong>两条道路:$0\rightarrow 1$和$0\rightarrow x\rightarrow 1$.这两条路径上各自只有一条可以割断的边$0\rightarrow 1$和$0\rightarrow x$.所以只要组合内的作物被分到$B$,连接$A$和组合点的边一定会被切断(即无法获得在$A$的额外利益),符合题意.像下面这样建图然后仍然求最小割就好了.</p>
+<img src=" http://m.qpic.cn/psb?/V14cBDik1OVqtW/ZDF84gyFozh2AbuHpPGK0npWYxTvvdc9KEpDEC3W388!/b/dLgAAAAAAAAA&amp;bo=SgJeAUoCXgEDByI!&amp;rf=viewer_4" style="zoom:67%;">
+
+<h2 id="费用流"><a href="#费用流" class="headerlink" title="费用流"></a>费用流</h2><p>​        对于一个网络,有时每条边$(u,v)$除了有容量的限制,还有费用的限制.这个费用通常以单位流量需要的费用$w(u,v)$的形式给出.也就是说当这条边的流量为$f(u,v)$的时候,这条边的总费用是$f(u,v)\times w(u,v)$,由此产生出一系列费用流问题.</p>
+<h3 id="最小费用最大流"><a href="#最小费用最大流" class="headerlink" title="最小费用最大流"></a>最小费用最大流</h3><p>​        一个网络中花费最小的最大流称为”最小费用最大流”.显然,是在<strong>保证流量最大的基础上</strong>求最小费用.对于这种问题,我们将原先最大流中的”$BFS$寻找最大流”改为”$SPFA$寻找最小费用最大流”就可以了.要注意的是,记得我们当时建立反向边来通过抵消原先决策来实现反悔操作.同样,为了抵消原先操作,我们所建立的反向边的费用应该是负的.因为每次寻找的都是单位费用最小的增广路,所以最终的费用和也是最小的</p>
+<p>​        流程上是这样的:</p>
+<pre><code>      1. 用SPFA寻找满足以下条件的路径
+- 可以增广
+- 在增广路中总的单位费用最小
+    2. 用dinic对这条路增广.</code></pre><p>具体内容结合代码理解.</p>
+<pre><code class="cpp">inline bool spfa() {//BFS改SPFA
+    memset(dis, 0x3f, sizeof(dis));//dis[i]指的是从S到i的最小费用
+    memcpy(cur, head, sizeof(cur));
+    memset(vis, 0, sizeof(vis));
+    while (q.size()) q.pop();
+    q.push(S), dis[S] = 0;
+    while (!q.empty()) {
+        int temp = q.front(); q.pop();
+        vis[temp] = 0;
+        for (int i = head[temp]; i; i = nxt[i])
+            if (len[i] &amp;&amp; dis[to[i]] &gt; dis[temp] + cst[i]) {//松弛操作,前提是还有剩余流量
+                dis[to[i]] = dis[temp] + cst[i];
+                if (!vis[to[i]]) {
+                    vis[to[i]] = 1;
+                    q.push(to[i]);
+                }
+            }
+    }
+    return (dis[T] != dis[0]);//如果dis[T]是inf,就代表没有增广路
+}
+
+int dinic(int now, int flow) {
+    if (now == T || !flow) return flow;
+    int ret = 0; vis[now] = 1;
+    for (int i = cur[now]; i; i = nxt[i]) {
+        if (len[i] &amp;&amp; !vis[to[i]] &amp;&amp; dis[to[i]] == dis[now] + cst[i]) {
+            //有剩余流量,没有被访问,而且是增广路上的点
+            int temp = dinic(to[i], min(flow - ret, len[i]));
+            len[i] -= temp, len[i ^ 1] += temp;//增广
+            ret += temp, mincost += temp * cst[i];//记录最小费用
+        }
+        if (ret == flow) return ret;
+    }
+    if (!ret) dis[now] = -1;//删掉没有贡献的点
+    return ret;
+}</code></pre>
+<h4 id="感谢-violet和-suwakow提供的帮助和参考"><a href="#感谢-violet和-suwakow提供的帮助和参考" class="headerlink" title="感谢@_violet和@suwakow提供的帮助和参考"></a>感谢<a href="https://www.luogu.org/space/show?uid=114446" target="_blank" rel="noopener">@_violet</a>和<a href="https://www.cnblogs.com/suwakow/" target="_blank" rel="noopener">@suwakow</a>提供的帮助和参考</h4>
+        </div>
+        <!-- .entry-content -->
+        <!--
+        <div class="single-reward">
+          <div class="reward-open">赏<div class="reward-main">
+              <ul class="reward-row">
+                <li class="alipay-code"><img src="/img/custom/donate/AliPayQR.jpg"></li>
+                <li class="wechat-code"><img src="/img/custom/donate/WeChanQR.jpg"></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div style="text-align:center; width: 100%" class="social-share share-mobile" data-disabled="diandian, tencent"></div>
+        <footer class="post-footer">
+          <div class="post-lincenses"><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" target="_blank" rel="nofollow"><i class="fa fa-creative-commons" aria-hidden="true"></i> 知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a></div>
+          <div class="post-tags">
+          </div>
+          <div class="post-share">
+            <div class="social-share sharehidden share-component"></div>
+            <i class="iconfont show-share icon-forward"></i>
+          </div>
+        </footer>--><!-- .entry-footer -->
+      </article>
+      <!-- #post-## -->
+      <div class="toc" style="background: none;"></div>
+      <section class="post-squares nextprev">
+        
+          
+            <div class="post-nepre half previous">
+          
+            <a href="/2019/10/28/2019-10-28-P1280-尼克的任务/" rel="prev">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Y9s*0TVTGSHLK8ORtbvvNUZ9WBbBzk2enDr4sTE.LsM!/r/dL8AAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/Y9s*0TVTGSHLK8ORtbvvNUZ9WBbBzk2enDr4sTE.LsM!/r/dL8AAAAAAAAA">
+              </div>
+              <span class="label">
+              Previous Post</span>
+              <div class="info">
+                <h3>
+                P1280 尼克的任务</h3>
+              </div>
+            </a>
+          </div>
+        
+        
+          
+            <div class="post-nepre half next">
+          
+            <a href="/2019/10/23/2019-10-23-trie字典树/" rel="next">
+              <div class="background">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/quHNCAHACU3.4fhdijRsHPPNJJLJsJiPCxOd5i*A.PQ!/r/dL4AAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/quHNCAHACU3.4fhdijRsHPPNJJLJsJiPCxOd5i*A.PQ!/r/dL4AAAAAAAAA">
+              </div>
+              <span class="label">
+              Next Post</span>
+              <div class="info">
+                <h3>
+                trie字典树</h3>
+              </div>
+            </a>
+          </div>
+        
+      </section>
+      
+  <script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/yremp/yremp-css@1.3/gitalk.css">
+  <div id="gitalk-container"></div>
+  <script type="text/javascript">
+      var gitalk = new Gitalk({
+          clientID: 'efa7ce8da306448c7f8b',
+          clientSecret: '7a9bc1e56f60b7cc3fac24c448dd358aaa393aa7',
+          id: window.location.pathname,
+          repo: 'i-cookie.github.io',
+          owner: 'i-cookie',
+          admin: 'i-cookie'
+      })
+      gitalk.render('gitalk-container')
+    </script>
+
+      <section class="author-profile">
+        <div class="info" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+          <a href="/about/" class="profile gravatar"><img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA" itemprop="image" alt="blog" height="70" width="70"></a>
+          <div class="meta">
+            <span class="title">Author</span>
+            <h3 itemprop="name">
+            <a href="https://i-cookie.github.io" itemprop="url" rel="author">i-cookie's blog</a>
+            </h3>
+          </div>
+        </div>
+        <p><i class="iconfont icon-write"></i>——Gensokyo</p>
+      </section>
+      </div><!-- #primary -->
+      </div>
+
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML"></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+
+
+
+
+    </div>    
+    <div class="openNav no-select" style="height: 50px;">
+      <div class="iconflat no-select" style="width: 50px; height: 50px;">
+        <div class="icon"></div>
+      </div>
+      <div class="site-branding search-form-submit">
+        <i class="iconfont js-toggle-search iconsearch icon-search"></i>
+      </div>
+    </div>
+  </section>
+
+  
+  <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="请输入关键词..."/>
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            // PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+  <!-- <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 i-cookie<br>
+      powered_by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer> -->
+<div id="gitalk-container"></div>
+<footer id="colophon" class="site-footer" role="contentinfo">
+  <div class="site-info">
+    <div class="footertext">
+      <div class="img-preload">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/wordpress-rotating-ball-o.svg">
+        <img src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/other/disqus-preloader.svg">
+      </div>
+      <p style="color: #666666;">&copy 2018</p>
+    </div>
+    <div class="footer-device">
+    <p style="font-family: 'Ubuntu', sans-serif;">
+        <span style="color: #b9b9b9;">Theme <a href="https://github.com/honjun/hexo-theme-sakura" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Sakura</a> <i class="iconfont icon-sakura rotating" style="color: #ffc0cb;display:inline-block"></i> by <a href="https://2heng.xin/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Mashiro</a>&<a href="https://www.hojun.cn/" target="_blank" style="color: #b9b9b9;;text-decoration: underline dotted rgba(0, 0, 0, .1);">Hojun</a>, Powered by Hexo, Hosted by Coding Pages</a>
+        </span>
+      </p>
+    </div>
+  </div><!-- .site-info -->
+</footer>
+
+
+
+<!-- <script src="/js/tocbot.js"></script> -->
+<script src="https://cdn.jsdelivr.net/gh/yremp/yremp-js@1.1/gitalk.js"></script>
+<script type="text/javascript" src="/js/lib.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script type="text/javascript" src="/js/InsightSearch.js"></script>
+<script type="text/javascript" src="/js/jquery.fancybox.min.js"></script>
+<script type="text/javascript" src="/js/zoom.min.js"></script>
+<script type="text/javascript" src="/js/sakura-app.js"></script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src='//unpkg.com/valine@1.3.4/dist/Valine.min.js'></script>
+<!-- 不蒜子 网页计数器 -->
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script> -->
+<script type="text/javascript">
+/* <![CDATA[ */
+if (/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)) {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"close"},"windowheight":"fixed","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+} else {
+  var Poi = {"pjax":"1","movies":{"url": "https://cdn.jsdelivr.net/gh/honjun/hojun@1.2","name":"Unbroken.mp4","live":"open"},"windowheight":"auto","codelamp":"close","ajaxurl":"","order":"asc","formpostion":"bottom"};
+}
+/* ]]> */
+
+</script>
+<script>
+$(document).ready(function() {
+  if ($(".toc").length > 0 && document.body.clientWidth > 1200) {
+    if ($(".pattern-center").length > 0) { //有图的情况
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -400,
+          scrollSmoothOffset: -85
+      });
+    } else {
+      tocbot.init({
+          // Where to render the table of contents.
+          tocSelector: '.toc', // 放置目录的容器
+          // Where to grab the headings to build the table of contents.
+          contentSelector: '.entry-content', // 正文内容所在
+          // Which headings to grab inside of the contentSelector element.
+          scrollSmooth: true,
+          headingSelector: 'h1, h2, h3, h4, h5', // 需要索引的标题级别
+          headingsOffset: -85,
+          scrollSmoothOffset: -85
+      });
+    }
+    var offsetTop = $('.toc').offset().top - 95;
+    window.onscroll = function() {
+      var scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+      if (scrollTop >= offsetTop) {
+        $('.toc').addClass('toc-fixed');
+      } else {
+        $('.toc').removeClass('toc-fixed');
+      }
+    }
+  }
+});
+</script>
+
+  
+  
+  <div id="mo-nav" class="">
+  <div class="m-avatar">
+    <img src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/2jmKv5lpJUOPc9*quizpuFcwzkMYYE*9Fx9OAoB.TtM!/r/dFQBAAAAAAAA">
+  </div>
+  <p style="text-align: center; color: #333; font-weight: 900; font-family: 'Ubuntu', sans-serif; letter-spacing: 1.5px">i-cookie'sblog</p>
+  <p style="text-align: center; word-spacing: 20px;">
+    
+      
+        <a href="https://github.com/i-cookie" class="fa fa-github" target="_blank" style="color: #333; margin-left:20px"></a>
+      
+    
+  </p>
+  <ul id="menu-new-1" class="menu">
+    
+      <li>
+        <a href="/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-fort-awesome faa-shake" aria-hidden="true"></i>
+            首页
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/archives/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-archive faa-shake" aria-hidden="true"></i>
+            归档
+          </span>
+        </a>
+        
+          <ul class="sub-menu">
+            
+              <li>
+                <a href="/categories/经验总结/">
+                  <i class="fa fa-code" aria-hidden="true"></i>
+                  经验总结
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/课堂笔记/">
+                  <i class="fa fa-book" aria-hidden="true"></i>
+                  课堂笔记
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/问题回顾/">
+                  <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                  问题回顾
+                </a>
+              </li>
+            
+              <li>
+                <a href="/categories/随笔/">
+                  <i class="fa fa-cloud-download" aria-hidden="true"></i>
+                  随笔
+                </a>
+              </li>
+            
+          </ul>
+        
+      </li>
+    
+      <li>
+        <a href="/tags/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-sticky-note" aria-hidden="true"></i>
+            标签
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/links/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-link faa-shake" aria-hidden="true"></i>
+            友链
+          </span>
+        </a>
+        
+      </li>
+    
+      <li>
+        <a href="/about/">
+          <span class="faa-parent animated-hover">
+            <i class="fa  fa-leaf faa-wrench" aria-hidden="true"></i>
+            关于
+          </span>
+        </a>
+        
+      </li>
+    
+  </ul>
+  <p style="text-align: center; font-size: 13px; color: #b9b9b9;">&copy 2019 hexo-sakura</p>
+</div>
+<button onclick="topFunction()" class="mobile-cd-top" id="moblieGoTop" title="Go to top" style="display: none;"><i class="fa fa-chevron-up" aria-hidden="true"></i></button>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.css">
+<script src="https://cdn.jsdelivr.net/npm/aplayer@1.10/dist/APlayer.min.js"></script>
+<style>
+  .aplayer .aplayer-lrc {
+    height: 35px;
+  }
+  .aplayer .aplayer-lrc p{
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 18px !important;
+  }
+  .aplayer .aplayer-lrc p.aplayer-lrc-current{
+    color: #FF1493;
+  }
+  .aplayer.aplayer-narrow .aplayer-body{
+    left: -66px !important;
+  }
+  .aplayer.aplayer-fixed .aplayer-lrc {
+    display: none;
+  }
+  .aplayer .aplayer-lrc.aplayer-lrc-hide {
+      display:none !important;
+  }
+  .aplayer.aplayer-fixed .lrc-show {
+    display: block;
+    background: rgba(255, 255, 255, 0.8);
+  }
+</style>
+<div class="aplayer"
+
+    data-id="598512469"
+
+    data-server="netease"
+
+    data-type="playlist"
+
+    data-fixed="true"
+
+    data-autoplay="false"
+
+    data-loop="all"
+
+    data-order="random"
+
+    data-preload="auto"
+
+    data-volume="0.7"
+
+    data-mutex="true"
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/meting@1.2/dist/Meting.min.js"></script>
+<script>
+  $(function(){
+    $('body').on('click', '.aplayer', function(){
+      if($('.aplayer-button').hasClass('aplayer-play')) {
+        $('.aplayer-lrc').removeClass('lrc-show');
+      } else {
+        $('.aplayer-lrc').addClass('lrc-show');
+      }
+    })
+  });
+</script>
+</body>
+</html>
