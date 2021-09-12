@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
   
-  <title itemprop="name">STL_map,set,string自制小辞典 | —幻想郷に、遊ぶがいい—</title>
+  <title itemprop="name">quiz and exam scores | —幻想郷に、遊ぶがいい—</title>
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
@@ -375,7 +375,7 @@
     </div>
     <header class="pattern-header single-header">
       <h1 class="entry-title">
-      STL_map,set,string自制小辞典</h1>
+      quiz and exam scores</h1>
       <p class="entry-census">
         <span>
           <a href="">
@@ -387,18 +387,9 @@
         </span>
         <span class="bull">
           <i class="fa fa-calendar" aria-hidden="true"></i></span>
-        2019-10-17<span class="bull">
+        2333-1-1<span class="bull">
           <i class="fa fa-eye" aria-hidden="true"></i></span>
       <span id="busuanzi_value_page_pv"></span>次阅读</p>
-      
-        
-          <div class="tags">
-            <style scoped>
-              a{color: #fff;}
-            </style>
-            &nbsp<i class="fa fa-tag" aria-hidden="true"></i>&nbsp
-            <a href="/tags/STL/">STL</a>
-          </div>
       
     </header>
   </div>
@@ -411,108 +402,7 @@
         <!--<div class="toc-entry-content">套嵌目录使用（主要为了支援评论）-->
         
         <div class="entry-content">
-          <h1 id="众所周知-C-C-STL"><a href="#众所周知-C-C-STL" class="headerlink" title="众所周知,C++ = C + STL"></a><del>众所周知,C++ = C + STL</del></h1><h2 id="map"><a href="#map" class="headerlink" title="map"></a>map</h2><h3 id="功能"><a href="#功能" class="headerlink" title="功能:"></a>功能:</h3><p>灵活的<del>开桶</del>容器,能够让各种类型的变量作为数组下标,空间要求较低,可以不离散化而开桶之类的</p>
-<h3 id="原理"><a href="#原理" class="headerlink" title="原理:"></a>原理:</h3><p>Map是基于树（红黑树）的实现方式，即添加到一个有序列表，在$\Theta(log\ n)$的复杂度内通过key值找到value,但是常数大.</p>
-<h3 id="头文件及定义"><a href="#头文件及定义" class="headerlink" title="头文件及定义"></a>头文件及定义</h3><pre><code class="cpp">#include &lt;map&gt;
-...
-map&lt;Typename1, Typename2&gt; mp;</code></pre>
-<p>其中$Typename1$是第一关键字,$Typename2$是第二关键字,使用时相当于$mp[Typename1] = Typename2$</p>
-<h3 id="成员函数"><a href="#成员函数" class="headerlink" title="成员函数"></a>成员函数</h3><pre><code class="cpp">/*定义*/
-map&lt;string, string&gt; mp;
-/*插入元素*/
-mp.insert(pair&lt;string, string&gt;(&quot;Monday&quot;, &quot;星期一&quot;));
-mp.insert(pair&lt;string, string&gt;(&quot;Tuesday&quot;, &quot;星期二&quot;));
-/*删除元素*/
-map&lt;string, string&gt;::iterator point;
-point = mp.find(&quot;Tuesday&quot;);//使用迭代器删除
-mp.erase(point);
-mp.clear();mp.erase(mp.begin(), mp.end());//全部删除
-/*查找并输出元素*/
-point=mp.find(&quot;Monday&quot;);
-if (point != mp.end())
-    cout &lt;&lt; point-&gt;first &lt;&lt; &quot; &quot; &lt;&lt; point-&gt;second;
-/*其他操作*/
-mp.count(&quot;Tuesday&quot;);//返回指定元素的出现次数
-mp.empty();//判断是否为空
-mp.size();//返回元素个数</code></pre>
-<h2 id="set"><a href="#set" class="headerlink" title="set"></a>set</h2><h3 id="功能-1"><a href="#功能-1" class="headerlink" title="功能"></a>功能</h3><p>能够在插入元素时自动排序,同时set中没有重复的元素,能够进行高效查找.</p>
-<h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><p>set同map一样是基于红黑树的,插入时间复杂度为$\Theta(log\ n)$,但是常数较大</p>
-<h3 id="头文件及定义-1"><a href="#头文件及定义-1" class="headerlink" title="头文件及定义"></a>头文件及定义</h3><pre><code class="cpp">#include &lt;set&gt;
-...
-set&lt;Typename&gt; s;</code></pre>
-<h3 id="成员函数-1"><a href="#成员函数-1" class="headerlink" title="成员函数"></a>成员函数</h3><pre><code class="cpp">#include &lt;set&gt;
-...
-set&lt;int&gt; s;
-/*插入元素*/
-s.insert(514);
-s.insert(1919);
-s.insert(114);//这些数字插入后会自动排序
-/*删除元素*/
-s.erase(iterator);//删除迭代器指向的值
-s.erase(l, r);//删除迭代器指定区间内部的值
-s.erase(key);//删除键值为key的元素的值
-/*查找元素*/
-pair&lt;set&lt;int&gt;::const_iterator, set&lt;int&gt;::const_iterator&gt; point;
-point = s.equal_range(514);//返回第一个&gt;=给定值的元素位置和第一个&gt;的元素位置.
-cout &lt;&lt; *point.first &lt;&lt; &quot; &quot; &lt;&lt; *point.second;
-s.find(114);//返回给定值的迭代器,否则返回s.end()
-s.lower_bound(514);//返回第一个大于等于给定值的迭代器
-s.upper_bound(514);//返回最后一个大于等于给定值的迭代器
-/*其他操作*/
-s.begin();s.end();//返回首尾迭代器
-s.empty();s.size();//判断是否为空和记录大小
-s.clear();//清空set
-s.count(1919);//返回出现次数(其实只有0或者1)
-set&lt;int, cmp&gt; s;//支持比较函数</code></pre>
-<h2 id="string"><a href="#string" class="headerlink" title="string"></a>string</h2><h3 id="功能-2"><a href="#功能-2" class="headerlink" title="功能"></a>功能</h3><p>string是功能强大的字符串容器,类似于C语言的char数组,但是又有所不同,可以支持大量的操作.</p>
-<h3 id="原理-2"><a href="#原理-2" class="headerlink" title="原理"></a>原理</h3><p>相当于储存着字符的vector容器,其部分操作虽然复杂度相当于暴力,但是非常方便</p>
-<h3 id="头文件与定义"><a href="#头文件与定义" class="headerlink" title="头文件与定义"></a>头文件与定义</h3><pre><code class="cpp">#include &lt;string&gt;
-...
-string s = &quot;2333333&quot;;//直接赋值字符串
-string t = s;//字符串间的赋值
-string s(10, &#39;6&#39;);//长度为10,每一个字符都是&#39;6&#39;
-string t(s, 6);//把s的第6个字符到结尾拷贝到t中.
-string t = string(s, 6);
-string t(s, 0, 5);//把s从0开始的5个字符拷贝到t中
-string s = string(str1, 0, 5);
-char c[11] = &quot;hello world&quot;;
-string s(c, 6);//把c数组的前6个字符拷贝到s中
-string s = string(c, 6);
-string s = string(&quot;2333333&quot;, 5);//这里的&quot;2333333&quot;应该视为char数组,所以是拷贝前5个字符而不是第五个往后的字符</code></pre>
-<h3 id="成员函数-2"><a href="#成员函数-2" class="headerlink" title="成员函数"></a>成员函数</h3><pre><code class="cpp">/*字符串信息*/
-s.size();s.length();//返回字符串的长度
-s.substr(x);//返回字符串的x到结尾
-s.substr(x, 10);//返回字符串下标为x处开始的10个字符
-s.reverse(l, r);//翻转字符串中两个指针规定区间的字符
-s.begin();s.end();//返回开头位置或者结尾位置的后一个位置
-/*查找*/
-s.find(t);//查找t在s中第一次出现的位置
-s.find(t, l);//查找t在s的[l, end()]中第一次出现的位置
-s.find(ch, l, n);//查找字符数组ch的前n个字符在s的[l, end]中第一次出现的位置
-s.find(c, l);//查找字符c在s的[l, end()]中第一次出现的位置
-//rfind系列可以进行反向操作
-/*删除内容*/
-s.erase(l, n);//将s中从l开始的n个字符删掉
-/*赋值*/
-s.assign(n,ch);//n个字符ch赋值给字符串s
-s.assign(t);//将字符串t赋值给字符串s
-s.assign(t, l, n);//将字符串t从l开始的n个字符赋值给字符串s
-s.assaign(ch, n);//将字符数组ch的前n个字符赋值给字符串s
-/*替换*/
-s.replace(p, n, m, ch);//删除p开始的n个字符，然后在p处插入m个字符ch
-s.replace(p, n, t);//删除从p开始的n个字符，然后在p处插入字符串t
-s.replace(p, n, t, l, m);//删除p开始的n个字符，然后在p处插入字符串t中从l开始的m个字符
-s.replace(p, n, ch, m);//删除p开始的n个字符，然后在p处插入字符数组ch的前m个字符
-/*添加*/
-s.append(n, c);//在当前串结尾添加n个字符c
-s.append(t);//把字符串t接到当前串的结尾
-s.append(t, l, n);//把字符串t中从l开始的n个字符连接到当前字符串的结尾
-append(ch, n);//把字符数组ch的前n个字符连接到当前字符串结尾
-/*插入*/
-s.append(n, ch);//在当前字符串结尾添加n个字符c
-s.append(t);//把字符串t连接到当前字符串的结尾
-s.append(t, l, n);//把字符串t中从l开始的n个字符连接到当前串的结尾
-append(ch, n);//把字符数组ch的前n个字符连接到当前串的结尾</code></pre>
+          <h3 id="·此页面用于记录我进入高校学习以来历次quiz和考试的成绩，以激励自己"><a href="#·此页面用于记录我进入高校学习以来历次quiz和考试的成绩，以激励自己" class="headerlink" title="·此页面用于记录我进入高校学习以来历次quiz和考试的成绩，以激励自己"></a>·此页面用于记录我进入高校学习以来历次quiz和考试的成绩，以激励自己</h3><p>$\qquad \qquad \qquad =\overline{\underline{|To\ Be\  Continued|}}=&gt;$</p>
 
         </div>
         <!-- .entry-content -->
@@ -544,15 +434,15 @@ append(ch, n);//把字符数组ch的前n个字符连接到当前串的结尾</co
           
             <div class="post-nepre half previous">
           
-            <a href="/2019/10/22/2019-10-12-线性基/" rel="prev">
+            <a href="/2333/12/31/大事记/" rel="prev">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/cPtIWyhtyIbgbQ7koXwlJ*t.gf6Z9TmwEkltQinMh4g!/r/dFQBAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/cPtIWyhtyIbgbQ7koXwlJ*t.gf6Z9TmwEkltQinMh4g!/r/dFQBAAAAAAAA">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/PKKIvec9fWbproyj*PvwVhfMpXynEJ7Vgskdn*AQl1Q!/r/dLYAAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/PKKIvec9fWbproyj*PvwVhfMpXynEJ7Vgskdn*AQl1Q!/r/dLYAAAAAAAAA">
               </div>
               <span class="label">
               Previous Post</span>
               <div class="info">
                 <h3>
-                线性基</h3>
+                =大事记=</h3>
               </div>
             </a>
           </div>
@@ -561,15 +451,15 @@ append(ch, n);//把字符数组ch的前n个字符连接到当前串的结尾</co
           
             <div class="post-nepre half next">
           
-            <a href="/2019/10/16/二分图初步/" rel="next">
+            <a href="/2019/11/21/曲奇的学习企划/" rel="next">
               <div class="background">
-                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/H.rDz3m5IZtP5cRvVsn*t3IFZYOvjzi4xvNhkvsycKc!/r/dL8AAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/H.rDz3m5IZtP5cRvVsn*t3IFZYOvjzi4xvNhkvsycKc!/r/dL8AAAAAAAAA">
+                <img class="lazyload" src="https://cdn.jsdelivr.net/gh/honjun/cdn@1.6/img/loader/orange.progress-bar-stripe-loader.svg" data-src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/BfHIdYu18iGi*6fqXFPfc4zBxmG2sV31rkzgzF47wOo!/r/dFMBAAAAAAAA" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;" onerror="imgError(this,3)" src="http://r.photo.store.qq.com/psb?/V14cBDik23h2lM/BfHIdYu18iGi*6fqXFPfc4zBxmG2sV31rkzgzF47wOo!/r/dFMBAAAAAAAA">
               </div>
               <span class="label">
               Next Post</span>
               <div class="info">
                 <h3>
-                二分图初步</h3>
+                曲奇的学习企划（封）</h3>
               </div>
             </a>
           </div>
